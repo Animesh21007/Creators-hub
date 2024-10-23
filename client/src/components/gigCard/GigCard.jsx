@@ -32,9 +32,12 @@ const GigCard = ({ item }) => {
 					<div className="star">
 						<img src="../../../public/images/star.png" alt="" />
 						<span>
-							{!isNaN(item.totalStars / item.starNumber)
-								? Math.round(item.totalStars / item.starNumber)
-								: 1}
+							{Array(Math.floor(data.totalStars / data.starNumber))
+								.fill()
+								.map((item, i) => (
+									<img src={star} alt="" key={i * Math.random()} />
+								))}
+							{Math.floor(data.totalStars / data.starNumber)}
 						</span>
 					</div>
 
