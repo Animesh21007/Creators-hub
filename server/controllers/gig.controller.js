@@ -47,12 +47,6 @@ export const getGigs = async (req, res, next) => {
 	const filter = {
 		...(qur.userId && { userId: qur.userId }),
 		...(qur.cat && { cat: qur.cat }),
-		...((qur.min || qur.max) && {
-			price: {
-				...(qur.min && { $lte: parseInt(qur.min) }),
-				...(qur.max && { $gte: parseInt(qur.max) }),
-			},
-		}),
 		...(qur.search && {
 			title: {
 				$regex: qur.search,
@@ -60,8 +54,16 @@ export const getGigs = async (req, res, next) => {
 			},
 		}),
 	};
-	console.log(filter, 'gcfgc');
-	if (!filter.price?.$gte && !filter.price?.$lte) delete filter.price;
+
+	if (qur.min || qur.max) {
+		filter.price = {};
+		if (qur.min) filter.price.$gt = qur.min;
+		if (qur.max) filter.price.$lt = qur.max;
+		// console.log(filter);
+	}
+
+	console.log(filter, 'fdbdh');
+
 	try {
 		const gigs = await Gig.find(filter).sort({ [qur.sort]: -1 });
 		// console.log('Gell\n');

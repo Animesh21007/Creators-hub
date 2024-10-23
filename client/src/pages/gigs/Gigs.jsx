@@ -40,6 +40,8 @@ const Gigs = () => {
 		// console.log(data);
 		refetch();
 		console.log(location);
+		minRef.current.value = null;
+		maxRef.current.value = null;
 	};
 	console.log(data);
 

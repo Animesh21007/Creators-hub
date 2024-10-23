@@ -32,7 +32,7 @@ const GigCard = ({ item }) => {
 					<div className="star">
 						<img src="../../../public/images/star.png" alt="" />
 						<span>
-							{isNaN(item.totalStars / item.starNumber)
+							{!isNaN(item.totalStars / item.starNumber)
 								? Math.round(item.totalStars / item.starNumber)
 								: 1}
 						</span>
