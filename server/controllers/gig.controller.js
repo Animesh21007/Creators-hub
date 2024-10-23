@@ -57,12 +57,17 @@ export const getGigs = async (req, res, next) => {
 
 	if (qur.min || qur.max) {
 		filter.price = {};
-		if (qur.min) filter.price.$gt = qur.min;
-		if (qur.max) filter.price.$lt = qur.max;
+		if (qur.min !== 'undefined' && !isNaN(qur.min)) {
+			filter.price = { ...filter.price, $gt: Number(qur.min) };
+		}
+		if (qur.max !== 'undefined' && !isNaN(qur.max)) {
+			filter.price = { ...filter.price, $lt: Number(qur.max) };
+		}
 		// console.log(filter);
+		if (Object.keys(filter.price).length === 0) {
+			delete filter.price;
+		}
 	}
-
-	console.log(filter, 'fdbdh');
 
 	try {
 		const gigs = await Gig.find(filter).sort({ [qur.sort]: -1 });

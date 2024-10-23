@@ -1,5 +1,8 @@
 Vite is faster for build and render, as unlike react is doen't use webpack underneth.
 
+----- If you have time then try  -----
+1. adding flags to reviews
+
 ----- New Routing Method -----
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
 

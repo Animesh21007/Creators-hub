@@ -12,9 +12,9 @@ export const verifyToken = async (req, res, next) => {
 			if (err) next(createError(403, 'Invalid token!'));
 			// console.log(payload);
 			req.userID = payload.id;
-			req.isSeller = payload.idSelller;
+			req.isSeller = payload.isSeller;
 		});
-		// console.log(req);
+		// console.log(req.isSeller);
 		next();
 	} catch (err) {
 		console.log(err);

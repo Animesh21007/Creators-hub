@@ -1,7 +1,8 @@
 import React from 'react';
 import './Review.scss';
 
-const Review = ({ star }) => {
+const Review = ({ star, review }) => {
+	console.log(review);
 	return (
 		<div className="review">
 			<div className="user">
@@ -22,10 +23,6 @@ const Review = ({ star }) => {
 				</div>
 			</div>
 			<div className="stars">
-				<img src={star} alt="" />
-				<img src={star} alt="" />
-				<img src={star} alt="" />
-				<img src={star} alt="" />
 				<img src={star} alt="" />
 				<span>5</span>
 			</div>

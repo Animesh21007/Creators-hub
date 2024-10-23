@@ -24,7 +24,7 @@ const orderSchema = new Schema(
 			required: false,
 		},
 		buyerId: {
-			type: Boolean,
+			type: String,
 			default: false,
 		},
 		payment_intent: {
