@@ -1,6 +1,7 @@
 import React from 'react';
 import './Gig.scss';
 import Slide from '../../components/slides/Slides';
+import { Slider } from 'infinite-react-carousel';
 import star from '../../../public/images/star.png';
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
@@ -30,7 +31,7 @@ const Gig = ({ item }) => {
 							<span>5</span>
 						</div>
 					</div>
-					<Slide slidesToShow={1} arrowsScroll={1} className="slider">
+					<Slider slidesToShow={1} arrowsScroll={1} className="slider">
 						<img
 							src="https://images.pexels.com/photos/1074535/pexels-photo-1074535.jpeg?auto=compress&cs=tinysrgb&w=1600"
 							alt=""
@@ -43,7 +44,7 @@ const Gig = ({ item }) => {
 							src="https://images.pexels.com/photos/1054777/pexels-photo-1054777.jpeg?auto=compress&cs=tinysrgb&w=1600"
 							alt=""
 						/>
-					</Slide>
+					</Slider>
 					<h2>About this Gig</h2>
 					<p>
 						I use an AI program to create images based on text prompts. This
