@@ -27,3 +27,11 @@ const router = createBrowserRouter([
 			},]
     }
 ])
+
+----- useQuery Hook -----
+1. useQuery : Fetch data 
+	a. refetch : refetches the data
+	b. enabled : Enables fetching only when flag is true
+
+2. useMutation : Similar to fetching
+    a.

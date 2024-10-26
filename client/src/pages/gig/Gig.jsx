@@ -18,6 +18,8 @@ const Gig = () => {
 		},
 	});
 
+	const userId = data?.userId;
+
 	const {
 		isLoading: isLoadingUser,
 		data: userData,
@@ -25,13 +27,12 @@ const Gig = () => {
 	} = useQuery({
 		queryKey: ['user'],
 		queryFn: async () => {
-			const res = await newRequest.get(`/users/${data.userId}`);
+			const res = await newRequest.get(`/users/${userId}`);
 			console.log(res.data);
 			return res.data;
 		},
+		enabled: !!userId,
 	});
-
-	console.log(!isLoadingUser ? userData : '');
 
 	return (
 		<div className="gig">
@@ -59,9 +60,8 @@ const Gig = () => {
 							</div>
 						</div>
 						<Slider slidesToShow={1} arrowsScroll={1} className="slider">
-							{data.images.map((img) => (
-								<img key={img} src={img} alt="" />
-							))}
+							{data &&
+								data?.images.map((img) => <img key={img} src={img} alt="" />)}
 						</Slider>
 						<h2>{data.shortTitle}</h2>
 						<p>{data.shortDesc}</p>

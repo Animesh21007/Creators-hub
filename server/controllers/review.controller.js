@@ -20,15 +20,15 @@ export const createReview = async (req, res, next) => {
 			userId: req.userID,
 		});
 		console.log(review);
-		if (review.length > 0)
+		if (review?.length > 0 || review)
 			return next(createError(403, 'You have already given a review!'));
 
 		const order = await Order.findOne({
 			gigId: req.body.gigId,
 			buyerId: req.userID,
 		});
-		if (!order)
-			return next(createError(403, "You haven't purchased the gig yet!"));
+		// if (!order)
+		// 	return next(createError(403, "You haven't purchased the gig yet!"));
 
 		await Gig.findByIdAndUpdate(req.body.gigId, {
 			$inc: { totalStars: req.body.star, starNumber: 1 },
