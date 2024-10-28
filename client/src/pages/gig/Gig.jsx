@@ -6,6 +6,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 import newRequest from '../../utils/api';
 import Reviews from '../reviews/Reviews';
+import { Link } from 'react-router-dom';
 
 const Gig = () => {
 	const { id } = useParams();
@@ -160,14 +161,16 @@ const Gig = () => {
 							</div>
 						</div>
 						<div className="features">
-							{data.features.map((feature) => (
+							{data?.features?.map((feature) => (
 								<div className="item" key={feature}>
 									<img src="../../../public/images/greencheck.png" alt="" />
 									<span>{feature}</span>
 								</div>
 							))}
 						</div>
-						<button>Continue</button>
+						<Link to={`/pay/${id}`}>
+							<button>Continue</button>
+						</Link>
 					</div>
 				</div>
 			)}

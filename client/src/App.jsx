@@ -18,6 +18,8 @@ import {
 	QueryClientProvider,
 	useQuery,
 } from '@tanstack/react-query';
+import Pay from './pages/pay/Pay';
+import Sucess from './pages/sucess/Sucess';
 
 const Layout = () => {
 	const queryClient = new QueryClient();
@@ -77,6 +79,14 @@ const router = createBrowserRouter([
 			{
 				path: '/messages',
 				element: <Messages />,
+			},
+			{
+				path: '/pay/:id',
+				element: <Pay />,
+			},
+			{
+				path: '/success',
+				element: <Sucess />,
 			},
 		],
 	},

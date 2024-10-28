@@ -12,6 +12,6 @@ const router = express.Router();
 router.post('/createConvo', verifyToken, createConvo);
 router.get('/', verifyToken, getConvos);
 router.get('/single/:id', verifyToken, getConvo);
-router.post('/:id', verifyToken, updateConvo);
+router.put('/:id', verifyToken, updateConvo);
 
 export default router;

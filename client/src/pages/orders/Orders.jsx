@@ -1,10 +1,12 @@
 import React from 'react';
 import './Orders.scss';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import newRequest from '../../utils/api';
 
 const Orders = () => {
+	const navigate = useNavigate();
+
 	const curruser = JSON.parse(localStorage.getItem('userInfo')) || {
 		id: 1,
 		username: 'John Doe',
@@ -19,6 +21,28 @@ const Orders = () => {
 			return res.data;
 		},
 	});
+
+	const handleConvo = async (order) => {
+		const sellerId = order.sellerId;
+		const buyerId = order.buyerId;
+		const id = sellerId + buyerId;
+
+		try {
+			const res = await newRequest.get(`/conversations/single/${id}`);
+			navigate(`/messages/${res.conversationId}`);
+			console.log(res);
+		} catch (err) {
+			// if(err)
+			if (err.status === 404) {
+				const res2 = await newRequest.post('/conversations/createConvo', {
+					to: curruser.isSeller ? buyerId : sellerId,
+				});
+				if (res2) {
+					navigate(`/messages/${res2.conversationId}`);
+				}
+			}
+		}
+	};
 
 	return (
 		<div className="orders">
@@ -58,6 +82,7 @@ const Orders = () => {
 											className="delete"
 											src="../../../public/images/message.png"
 											alt=""
+											onClick={() => handleConvo(order)}
 										/>
 									</td>
 								</tr>

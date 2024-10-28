@@ -10,7 +10,7 @@ export const createConvo = async (req, res, next) => {
 		readByBuyer: !req.isSeller,
 	});
 
-	console.log(newConvo);
+	// console.log(newConvo);
 
 	try {
 		const savedConvo = await newConvo.save();
@@ -22,10 +22,10 @@ export const createConvo = async (req, res, next) => {
 
 export const getConvos = async (req, res, next) => {
 	try {
-		const convos = await Conversation.findOne(
-			req.isSeller ? { sellerId: req.useID } : { buyerId: req.userID }
+		const convos = await Conversation.find(
+			req.isSeller ? { sellerId: req.userID } : { buyerId: req.userID }
 		);
-		console.log(req.useID, req.isSeller);
+		// console.log(req.useID, req.isSeller, 'vghcc');
 		return res.status(200).send(convos);
 	} catch (err) {
 		next(err);
@@ -35,6 +35,7 @@ export const getConvos = async (req, res, next) => {
 export const getConvo = async (req, res, next) => {
 	try {
 		const convo = await Conversation.findOne({ id: req.params.id });
+		if (!convo) return next(createError(404, 'Conversation not found'));
 		return res.status(200).send(convo);
 	} catch (err) {
 		next(err);

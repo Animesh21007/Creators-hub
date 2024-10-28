@@ -27,6 +27,15 @@
                 td{
                    padding: 10px;
 
+                   #bt,button{
+                    background-color: #1dbf73;
+                    color: white;
+                    padding: 10px;
+                    border: none;
+                    cursor: pointer;
+                }
+                  
+
                    &:first-child{
                     font-weight: 500;
                    }
@@ -50,4 +59,5 @@
             }
         }
     }
+    
 }
