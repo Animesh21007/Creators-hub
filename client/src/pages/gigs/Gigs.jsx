@@ -53,7 +53,7 @@ const Gigs = () => {
 		<div className="gigs">
 			<div className="container">
 				<span className="breadcrumbs">
-					FIVERR '{'>'}' GRAPHICS & DESIGN '{'>'}'{' '}
+					Creators'Hub '{'>'}' GRAPHICS & DESIGN '{'>'}'{' '}
 				</span>
 				<h1>AI Artists</h1>
 				<p>

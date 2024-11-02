@@ -45,7 +45,7 @@ const Gig = () => {
 				<div className="container">
 					<div className="left">
 						<span className="breadCrumbs">
-							FIVERR '{'>'}'GRAPHICS & DESIGN'{'>'}'
+							Creators'Hub '{'>'}'GRAPHICS & DESIGN'{'>'}'
 						</span>
 						<h1>{data.title}</h1>
 						<div className="user">

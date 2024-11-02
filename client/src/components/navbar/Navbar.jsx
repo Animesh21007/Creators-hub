@@ -41,12 +41,12 @@ const Navbar = () => {
 			<div className="container">
 				<div className="logo">
 					<Link to="/" className="link">
-						<span className="text">fiverr</span>
+						<span className="text">creators'hub </span>
 						<span>.</span>
 					</Link>
 				</div>
 				<div className="links">
-					<span>Fiverr Business</span>
+					<span>Creators'Hub Business</span>
 					<span>Explore</span>
 					<span>English</span>
 					{!currentUser && (

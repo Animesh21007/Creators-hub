@@ -81,8 +81,8 @@ const Footer = () => {
 				<hr />
 				<div className="bottom">
 					<div className="left">
-						<h2>fiverr</h2>
-						<span>© Fiverr International Ltd. 2024</span>
+						<h2>Creators'Hub </h2>
+						<span>© Freelance Ltd. 2024</span>
 					</div>
 					<div className="right">
 						<div className="social">
