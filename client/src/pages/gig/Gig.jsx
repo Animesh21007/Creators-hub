@@ -1,7 +1,7 @@
 import React from 'react';
 import './Gig.scss';
-import { Slider } from 'infinite-react-carousel';
-import star from '../../../public/images/star.png';
+import Slide from '../../components/slides/Slides.jsx';
+import star from '/images/star.png';
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 import newRequest from '../../utils/api';
@@ -12,7 +12,7 @@ const Gig = () => {
 	const { id } = useParams();
 	console.log(id, 'fdsg');
 	const { isLoading, data, error } = useQuery({
-		queryKey: ['gig'],
+		queryKey: [id],
 		queryFn: async () => {
 			const res = await newRequest.get(`/gigs/single/${id}`);
 			return res.data;
@@ -29,7 +29,7 @@ const Gig = () => {
 		queryKey: ['user'],
 		queryFn: async () => {
 			const res = await newRequest.get(`/users/${userId}`);
-			console.log(res.data);
+			// console.log(res.data, 'Something amongst ages');
 			return res.data;
 		},
 		enabled: !!userId,
@@ -52,18 +52,25 @@ const Gig = () => {
 							<img src="" alt="" />
 							<span>John Doe</span>
 							<div className="stars">
-								<img src="../../../public/images/star.png" alt="" />
-								<img src="../../../public/images/star.png" alt="" />
-								<img src="../../../public/images/star.png" alt="" />
-								<img src="../../../public/images/star.png" alt="" />
-								<img src="../../../public/images/star.png" alt="" />
+								<img src="/images/star.png" alt="" />
+								<img src="/images/star.png" alt="" />
+								<img src="/images/star.png" alt="" />
+								<img src="/images/star.png" alt="" />
+								<img src="/images/star.png" alt="" />
 								<span>5</span>
 							</div>
 						</div>
-						<Slider slidesToShow={1} arrowsScroll={1} className="slider">
-							{data &&
-								data?.images.map((img) => <img key={img} src={img} alt="" />)}
-						</Slider>
+						<Slide slidesToShow={1} arrowsScroll={1} className="slider">
+							{data && data.images && data.images.length > 0 ? (
+								data.images.map((img, idx) => (
+									<img key={idx} src={img} alt="" />
+								))
+							) : (
+								<p>No images available</p> // Optional: A fallback if images array is empty or undefined
+							)}
+						</Slide>
+
+						<h3>{JSON.stringify(data.images)}</h3>
 						<h2>{data.shortTitle}</h2>
 						<p>{data.shortDesc}</p>
 
@@ -73,10 +80,7 @@ const Gig = () => {
 							<div className="seller">
 								<h2>About The Seller</h2>
 								<div className="user">
-									<img
-										src={userData?.img || '../../../public/images/avatar.jpg'}
-										alt=""
-									/>
+									<img src={userData?.img || '/images/avatar.jpg'} alt="" />
 									<div className="info">
 										<span>{userData?.username}</span>
 										<div className="stars">
@@ -107,39 +111,41 @@ const Gig = () => {
 									</div>
 								</div>
 
-								<div className="box">
-									<div className="items">
-										<div className="item">
-											<span className="title">From</span>
-											<span className="desc">{userData.country}</span>
+								{userData && (
+									<div className="box">
+										<div className="items">
+											<div className="item">
+												<span className="title">From</span>
+												<span className="desc">{userData?.country}</span>
+											</div>
+											<div className="item">
+												<span className="title">Member since</span>
+												<span className="desc">Aug 2022</span>
+											</div>
+											<div className="item">
+												<span className="title">Avg. response time</span>
+												<span className="desc">4 hours</span>
+											</div>
+											<div className="item">
+												<span className="title">Last delivery</span>
+												<span className="desc">1 day</span>
+											</div>
+											<div className="item">
+												<span className="title">Languages</span>
+												<span className="desc">English</span>
+											</div>
 										</div>
-										<div className="item">
-											<span className="title">Member since</span>
-											<span className="desc">Aug 2022</span>
-										</div>
-										<div className="item">
-											<span className="title">Avg. response time</span>
-											<span className="desc">4 hours</span>
-										</div>
-										<div className="item">
-											<span className="title">Last delivery</span>
-											<span className="desc">1 day</span>
-										</div>
-										<div className="item">
-											<span className="title">Languages</span>
-											<span className="desc">English</span>
-										</div>
-									</div>
-									<hr />
-									<p>
-										{userData.desc
-											? userData.desc
-											: `My name is Anna, I enjoy creating AI generated art in my
+										<hr />
+										<p>
+											{userData.desc
+												? userData?.desc
+												: `My name is Anna, I enjoy creating AI generated art in my
 										spare time. I have a lot of experience using the AI program
 										and that means I know what to prompt the AI with to get a
 										great and incredibly detailed result.`}
-									</p>
-								</div>
+										</p>
+									</div>
+								)}
 							</div>
 						)}
 						{<Reviews gigId={id} star={star} />}
@@ -152,18 +158,18 @@ const Gig = () => {
 						<p>{data.shortDesc}</p>
 						<div className="details">
 							<div className="item">
-								<img src="../../../public/images/clock.png" alt="" />
-								<span>{data.deliveryTime} Days Delivery</span>
+								<img src="/images/clock.png" alt="" />
+								<span>{data?.deliveryTime ?? '-'} Days Delivery</span>
 							</div>
 							<div className="item">
-								<img src="../../../public/images/recycle.png" alt="" />
-								<span>{data.revisionNumber} Revisions</span>
+								<img src="/images/recycle.png" alt="" />
+								<span>{data?.revisionNumber ?? '-'} Revisions</span>
 							</div>
 						</div>
 						<div className="features">
 							{data?.features?.map((feature) => (
 								<div className="item" key={feature}>
-									<img src="../../../public/images/greencheck.png" alt="" />
+									<img src="/images/greencheck.png" alt="" />
 									<span>{feature}</span>
 								</div>
 							))}

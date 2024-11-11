@@ -11,7 +11,7 @@ const Reviews = ({ gigId, star }) => {
 		queryKey: [`reviews`],
 		queryFn: async () => {
 			const res = await newRequest.get(`/reviews/${gigId}`);
-			console.log(res.data);
+			// console.log(res.data);
 			return res.data;
 		},
 	});

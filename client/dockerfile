@@ -1,0 +1,20 @@
+FROM node:20 AS dev
+
+WORKDIR /client
+
+COPY package*.json ./
+
+RUN npm install --legacy-peer-deps --verbose
+
+COPY . .
+# Configure the vite.config.js 
+# export default {
+# server: {
+#     host: '0.0.0.0',  // Make it accessible from outside the container
+#     port: 5174         // Or set it to whatever port you prefer
+#   }
+# };
+
+EXPOSE 5173
+
+CMD ["npm","run","dev"]

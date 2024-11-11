@@ -71,7 +71,7 @@ const MyGigs = () => {
 								<td>
 									<img
 										className="delete"
-										src="../../../public/images/delete.png"
+										src="/images/delete.png"
 										alt=""
 										onClick={() => handleDelete(gig._id)}
 									/>

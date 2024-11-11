@@ -80,7 +80,7 @@ const Orders = () => {
 									<td>
 										<img
 											className="delete"
-											src="../../../public/images/message.png"
+											src="/images/message.png"
 											alt=""
 											onClick={() => handleConvo(order)}
 										/>

@@ -1,0 +1,20 @@
+FROM node:20 AS dev
+# Create a root directory in docker environment
+WORKDIR /server
+# Copying package.json and lock.json, they are copied first for optimization, docker caches these
+COPY package*.json ./
+# Installing the dependencies
+RUN npm install 
+# Reinstalling the bcryt library in docker as installed bcrypt on your local machine (e.g., on Windows or macOS), and it’s incompatible with the Linux environment in Docker.
+RUN npm rebuild bcrypt --build-from-source
+# Copying everything i.e files inside the host folder
+
+COPY . .
+# Exposing port 8080 of docker environment 
+EXPOSE 8080
+# RUNNING commands after to execute the code 
+ENV NODE_ENV=production
+CMD [ "npm","start" ]
+
+
+

@@ -46,7 +46,7 @@ const Navbar = () => {
 					</Link>
 				</div>
 				<div className="links">
-					<span>Creators'Hub Business</span>
+					<span>Business</span>
 					<span>Explore</span>
 					<span>English</span>
 					{!currentUser && (
@@ -59,11 +59,7 @@ const Navbar = () => {
 					{currentUser && (
 						<div className="user">
 							<img
-								src={
-									currentUser?.img
-										? currentUser.img
-										: '../../../public/images/avatar.jpg'
-								}
+								src={currentUser?.img ? currentUser.img : '/images/avatar.jpg'}
 								alt=""
 							/>
 							<span onClick={() => setOpen((prev) => !prev)}>

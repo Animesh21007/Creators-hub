@@ -6,11 +6,11 @@ const TrustedBy = () => {
 		<div className="trustedby">
 			<div className="container">
 				<span>Trusted By :</span>
-				<img src="../../../public/images/facebook.png" alt="" />
-				<img src="../../../public/images/facebook.png" alt="" />
-				<img src="../../../public/images/facebook.png" alt="" />
-				<img src="../../../public/images/facebook.png" alt="" />
-				<img src="../../../public/images/facebook.png" alt="" />
+				<img src="/images/facebook.png" alt="" />
+				<img src="/images/facebook.png" alt="" />
+				<img src="/images/facebook.png" alt="" />
+				<img src="/images/facebook.png" alt="" />
+				<img src="/images/facebook.png" alt="" />
 			</div>
 		</div>
 	);

@@ -16,7 +16,7 @@ const Gigs = () => {
 	// console.log(minRef.current.value);
 
 	const obj = {
-		queryKey: ['gig'],
+		queryKey: ['gigs'],
 		queryFn: async () => {
 			const res = await newRequest.get(
 				`/gigs?${search}&max=${minRef.current?.value}&min=${maxRef.current?.value}&sort=${sort}`
@@ -81,11 +81,7 @@ const Gigs = () => {
 						<span className="sortType">
 							{sort === 'design' ? 'Best Seller' : 'Newest'}
 						</span>
-						<img
-							src="../../../public/images/down.png"
-							alt=""
-							onClick={() => setOpen(!open)}
-						/>
+						<img src="/images/down.png" alt="" onClick={() => setOpen(!open)} />
 						{open && (
 							<div className="rightMenu">
 								{sort === 'sales' ? (

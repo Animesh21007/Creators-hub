@@ -3,14 +3,14 @@ import './GigCard.scss';
 import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import newRequest from '../../utils/api';
-import star from '../../../public/images/star.png';
+import star from '/images/star.png';
 
 const GigCard = ({ item }) => {
 	const { isLoading, data, error } = useQuery({
 		queryKey: [`${item._id}`],
 		queryFn: async () => {
 			const res = await newRequest(`/users/${item.userId}`);
-			// console.log(res.data, item);
+			console.log(res.data, item, 'Something .... ');
 			return res.data;
 		},
 	});
@@ -27,11 +27,7 @@ const GigCard = ({ item }) => {
 									{!isLoading && (
 										<div className="user">
 											<img
-												src={
-													data.img
-														? data.img
-														: '../../../public/images/avatar.jpg'
-												}
+												src={data.img ? data.img : '/images/avatar.jpg'}
 												alt=""
 											/>
 											<span>{data.username}</span>
@@ -39,7 +35,7 @@ const GigCard = ({ item }) => {
 									)}
 									<p>{item.desc}</p>
 									<div className="star">
-										{/* <img src="../../../public/images/star.png" alt="" /> */}
+										{/* <img src="/images/star.png" alt="" /> */}
 										<span>
 											{Array(
 												Math.max(
