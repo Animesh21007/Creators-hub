@@ -57,7 +57,8 @@ const Gigs = () => {
 				</span>
 				<h1>AI Artists</h1>
 				<p>
-					Explore the boundries of art and technology with Fiverr's AI artists
+					Explore the boundries of art and technology with Creators'hub AI
+					artists
 				</p>
 				<div className="menu">
 					<div className="left">

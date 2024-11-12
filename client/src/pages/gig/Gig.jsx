@@ -1,6 +1,8 @@
 import React from 'react';
 import './Gig.scss';
 import Slide from '../../components/slides/Slides.jsx';
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
 import star from '/images/star.png';
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
@@ -35,6 +37,21 @@ const Gig = () => {
 		enabled: !!userId,
 	});
 
+	const responsive = {
+		desktop: {
+			breakpoint: { max: 3000, min: 1024 },
+			items: 1, // Adjust this based on how many slides you want to show on desktop
+		},
+		tablet: {
+			breakpoint: { max: 1024, min: 464 },
+			items: 1,
+		},
+		mobile: {
+			breakpoint: { max: 464, min: 0 },
+			items: 1,
+		},
+	};
+
 	return (
 		<div className="gig">
 			{isLoading ? (
@@ -60,20 +77,26 @@ const Gig = () => {
 								<span>5</span>
 							</div>
 						</div>
-						<Slide slidesToShow={1} arrowsScroll={1} className="slider">
-							{data && data.images && data.images.length > 0 ? (
-								data.images.map((img, idx) => (
-									<img key={idx} src={img} alt="" />
-								))
-							) : (
-								<p>No images available</p> // Optional: A fallback if images array is empty or undefined
-							)}
-						</Slide>
-
-						<h3>{JSON.stringify(data.images)}</h3>
+						<div className="carousel-container">
+							<Carousel
+								responsive={responsive}
+								arrows={true}
+								infinite={true}
+								autoPlay={false}
+								autoPlaySpeed={3000}
+								slidesToSlide={1}>
+								{data && data.images && data.images.length > 0 ? (
+									data.images.map((img, idx) => (
+										<img key={idx} src={img} alt="" />
+									))
+								) : (
+									<p>No images available</p> // Optional fallback if images array is empty or undefined
+								)}
+							</Carousel>
+						</div>
 						<h2>{data.shortTitle}</h2>
 						<p>{data.shortDesc}</p>
-
+						<hr />
 						{isLoadingUser ? (
 							'Loading ...'
 						) : (
@@ -148,12 +171,13 @@ const Gig = () => {
 								)}
 							</div>
 						)}
+						<hr />
 						{<Reviews gigId={id} star={star} />}
 					</div>
 					<div className="right">
 						<div className="price">
 							<h3>{data.shortTitle}</h3>
-							<h2>$ {data.price}</h2>
+							<h2>₹ {data.price}</h2>
 						</div>
 						<p>{data.shortDesc}</p>
 						<div className="details">

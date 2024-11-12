@@ -26,6 +26,7 @@ export const createPayment = async (req, res, next) => {
 			price: gig.price,
 			payment_intent: payment_intent.id,
 		});
+		// console.log(newOrder, req.userID, 'This is req something');
 
 		await newOrder.save();
 		res.status(201).send({ clientSecret: payment_intent.client_secret });
@@ -36,10 +37,12 @@ export const createPayment = async (req, res, next) => {
 
 export const getOrders = async (req, res, next) => {
 	try {
+		console.log(req);
 		const orders = await Order.find({
 			// isCompleted: true,
 			...(req.isSeller ? { sellerId: req.userID } : { buyerId: req.userID }),
 		});
+		console.log(orders);
 		return res.status(200).send(orders);
 	} catch (err) {
 		console.log(err);

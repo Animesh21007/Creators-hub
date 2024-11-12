@@ -5,6 +5,7 @@ import {
 	useStripe,
 	useElements,
 } from '@stripe/react-stripe-js';
+import './CheckoutForm.scss';
 
 const CheckoutForm = ({ dpmCheckerLink }) => {
 	const stripe = useStripe();
@@ -75,8 +76,9 @@ const CheckoutForm = ({ dpmCheckerLink }) => {
 	};
 
 	return (
-		<div>
+		<div className="checkout">
 			<form id="payment-form" onSubmit={handleSubmit}>
+				<h3>Complete your transaction</h3>
 				<LinkAuthenticationElement
 					id="link-authentication-element"
 					onChange={(e) => setEmail(e.target.value)}

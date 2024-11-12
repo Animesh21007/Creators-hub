@@ -1,9 +1,12 @@
 .footer{
     display: flex;
     justify-content: center;
-    color: #999;
-    margin: 50px 0;  
+    color: #fff;
+    background-color: #0d084d;
+    margin-top: 50px ;  
     width: 100%; 
+    position: relative;
+    bottom: 0;
 
     img{
         width: 24px;
@@ -12,6 +15,7 @@
     .container{
         width: 100%;
         padding: 20px;
+        padding-top: 0;
 
         .top{
             display: flex;
@@ -34,7 +38,7 @@
         }
 
         hr{
-            margin: 50px 0;
+            margin-bottom: 25px;
             height: 0;
             border: 1px solid darkblue
         }

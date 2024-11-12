@@ -3,7 +3,7 @@
     justify-content: center;
   
     .container {
-      width: 90%;
+      width: 97%;
       margin: auto;
       padding: 30px 0px;
       display: flex;
@@ -14,6 +14,22 @@
         display: flex;
         flex-direction: column;
         gap: 20px;
+        max-width: 60%;
+
+        .carousel-container {
+          width: 400px;
+          height: 400px;
+          margin: 0 auto; /* Center the carousel */
+          overflow: hidden; /* Optional: Prevents overflow if images are larger */
+        }
+        
+        .carousel-container img {
+          width: 100%;
+          // min-width: 350px;
+          height: 100%;
+          object-fit: cover; /* Makes sure images fit without stretching */
+        }
+        
   
         .breadcrumbs {
           font-weight: 300;
@@ -29,6 +45,7 @@
           display: flex;
           align-items: center;
           gap: 10px;
+          
   
           .pp {
             width: 32px;
@@ -83,6 +100,12 @@
           display: flex;
           flex-direction: column;
           gap: 20px;
+          padding: 21px;
+          color: #F5F5F5;
+          border-radius: 14px;
+          background-color: #0d084d;
+          // color: white;
+          // color: black;
   
           .user {
             display: flex;
@@ -90,10 +113,13 @@
             gap: 20px;
   
             img {
-              width: 100px;
-              height: 100px;
+              width: 120px;
+              height: 120px;
+              padding: 10px;
+              border-radius: 7px;
               border-radius: 50%;
               object-fit: cover;
+              background-color: #F5F5F5;
             }
   
             .info {
@@ -105,17 +131,19 @@
                 display: flex;
                 align-items: center;
                 gap: 5px;
-  
+                
                 img {
                   height: 14px;
                   width: 14px;
                   margin-right: 7px;
+                  // backgroun;
                 }
   
                 span {
+                  display: flex;
                   font-size: 14px;
                   font-weight: bold;
-                  color: #ffc108;
+                  color: #ffc108!important;
                 }
               }
   
@@ -127,17 +155,26 @@
               }
             }
           }
+
+          p{
+            color: #F5F5F5;
+          }
   
           .box {
             border: 1px solid lightgray;
             border-radius: 5px;
             padding: 20px;
             margin-top: 20px;
+            
+            // background-color: #F5F5F5;
   
             .items {
               display: flex;
               justify-content: space-between;
               flex-wrap: wrap;
+              display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
   
               .item {
                 width: 300px;
@@ -171,8 +208,11 @@
         gap: 20px;
         height: max-content;
         max-height: 500px;
+        max-width: 400px;
         position: sticky;
         top: 150px;
+        color: #F5F5F5;
+        background-color: #0d084d;
   
         .price {
           display: flex;
@@ -189,7 +229,7 @@
         }
   
         p{
-          color: gray;
+          color: rgb(174, 219, 226);
           margin: 10px 0px;
         }
   
@@ -205,7 +245,10 @@
             gap: 10px;
   
             img {
-              width: 20px;
+              width: 24px;
+              background: aliceblue;
+              padding: 3px;
+              border-radius: 50%;
             }
           }
         }
@@ -216,7 +259,7 @@
             align-items: center;
             gap: 10px;
             font-weight: 300;
-            color: gray;
+            color: rgb(174, 219, 226);
             margin-bottom: 5px;
   
             img{

@@ -9,8 +9,8 @@ import {
 const router = express.Router();
 
 // router.post(`/newOrder/:gigId`, verifyToken, createOrder);
-router.get('/', verifyToken, getOrders);
-router.post('/create-payment-intent/:id', createPayment);
+router.get('/get/', verifyToken, getOrders);
+router.post('/create-payment-intent/:id', verifyToken, createPayment);
 router.put('/', verifyToken, confirm);
 
 export default router;

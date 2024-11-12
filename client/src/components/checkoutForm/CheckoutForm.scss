@@ -1,0 +1,25 @@
+.checkout{
+    form{
+        margin: 28px;
+        padding: 14px 28px;
+        width: 50%;
+        margin: auto;
+
+        h3{
+            margin: 14px 0;
+            color: green;
+            text-decoration: underline;
+        }
+
+        // .p-FieldLabel,.p-field,
+         .Label{
+            margin: 7px;
+            font-weight: 600!important;
+            font-size: large;
+        }
+        input{
+            max-width: 400px;
+        }
+    }
+
+}

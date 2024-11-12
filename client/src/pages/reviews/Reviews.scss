@@ -1,11 +1,19 @@
 .reviews {
-    margin-top: 50px;
+    margin-top: 25px;
+
+    .head{
+      font-size: 2.4rem;
+      font-weight: bold;
+      color: rgb(9, 89, 89);
+    }
   
     .add {
-      margin-top: 20px;
       display: flex;
       flex-direction: column;
       gap: 20px;
+      max-width: 70%;
+      margin: auto;
+      margin-top: 20px;
   
       .addForm {
         display: flex;
@@ -43,6 +51,6 @@
     hr {
       height: 0;
       border: 0.5px solid lightgray;
-      margin: 50px 0px;
+      margin: 25px 0px;
     }
   }

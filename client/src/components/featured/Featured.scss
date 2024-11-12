@@ -10,7 +10,7 @@
         width: 100%;
         display: flex;
         align-items: center;
-        padding: 0 20px;
+        padding: 20px;
 
         .left{
             display: flex;
@@ -19,7 +19,7 @@
             
             h1{
                 font-size: 50px;
-
+                margin: 0 28px;
                 i{
                     font-weight: normal;
                 }
@@ -85,10 +85,17 @@
 
         .right{
             height: 100%;
+            max-width: 60%;
+            min-width: 40%;
 
             img{
                 height: 100%;
+                width: -webkit-fill-available;
+                // min-width: 400px;
                 object-fit: contain;
+                border-radius: 28px;
+                // border: 2px solid;
+
             }
         }
     }

@@ -1,1 +1,14 @@
-.pay{}
+.pay{
+    button{
+        padding: 7px 14px;
+        border-radius: 7px;
+        background-color: rgb(7, 37, 37);
+        color: white;
+        border: 2px solid transparent;
+        margin-top: 28px;
+        
+        &:hover{
+            border: 2px solid rgb(75, 250, 125);
+        }
+    }
+}

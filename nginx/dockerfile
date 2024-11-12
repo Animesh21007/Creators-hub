@@ -1,0 +1,10 @@
+FROM nginx:latest
+
+# Copy NGINX config file
+COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
+
+# Copy the static file from the client directory
+COPY ./client/public /usr/share/nginx/html
+
+# Default port for nginx server is 80
+EXPOSE 80

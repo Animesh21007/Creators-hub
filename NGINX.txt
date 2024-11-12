@@ -1,0 +1,76 @@
+NGINX
+    - It is a web server and a reverse proxy
+    - Serves static content, load balancing and handles HTTP/HTTPS requests 
+
+    1. Web servers
+     - Using configuration a directory from NGINX can be specified which serves static files ex. location /static {...}
+
+    2. Reverse proxy 
+        - Acting as a gateway between client and multiple backend servers
+        - [Forward proxy : Multiple clients and single backend server]
+        - Creates single point of access, carries out routing and load distribution
+
+    3. Load balancing
+        - Distributing incoming traffic among multiple servers, avoiding single server overload
+        - Uses following load balancing algos
+        a. Round Robin : Even traffic   distribution in rotating manner
+        b. Least Connections : Routes traffic to server with least Connections
+        c. IP hash : Maintains session persistance, Routes user based on client's IP address
+    
+    4. Content Caching
+        - Caches the static and dynamic content to reduce load on servers
+        - Temporarily stores responses to frequent requests, NGINX serves cached responses directly rather than processing request afresh
+
+    5. SSL Termination 
+        - SSL certifications are configured in NGNIX's configuration file, used for encryption and secure client-server communicae.
+    
+    6. Reverse Proxy for Microservices 
+        - Makes microservices management easy by acting as unified entry point, routing requests to appropriate service based on URL pattterns.
+        - Makes it easier to scale indivisual services independently.
+
+    
+NGINX Configuraion Terms : 
+    
+    1. Server block : Defines server configuration for particular domain or IP, specifying how requests to that server should be handled.
+
+    2. Location Block : Used within a server blocks to handle specific URL patterns. Ex. location /static/ serves static files.
+
+    3. Proxy pass : Directs NGNIX to forward requests to another server or service, essential for using NGNIX as a reverse proxy.
+
+    4. Upstream : Defines a group of backend servers for load balancing.
+
+
+
+
+
+SSL / TLS : Secure Sockets Layer and Transport Layer Security
+
+    - TLS provides stronger encryption and improved security over SSL.
+    - It is used to verify server's identity to prevent attack from malicious server, phishing and man-in-middle attacks.
+    - Encryption to prevent sensitive information, allows data integrity.
+
+    a. Handshake : SSL/TLS begins with handshake between client and server, with exchange of crytographic keys
+      
+      Asymmetric Encryption
+       - 1. First server shares its public key with client. 
+       - 2. Client encrypts a session key with that public key.
+       - 3. This session key can only be decrypted by server's private key.
+       
+      Symmetric Encryption 
+       - 4. After handshake is complete both client and server switch to symmetric encryption i.e using session key for faster communication.
+
+    Components: 
+    1. Public key : Allows encryption of data which can be decrypted by private key.
+    2. Private key : Kept on server, decrypts the public key.
+    3. Digital Signature : It is a signature from Certificate Authority (CA) that validates authenticity of certificate.Ex globalSign, DigiCert
+    4. Certificate Details : Has info about certificate holder, domain name, issuing authority, expiration date and cryptographic algorithms used.
+
+    Benefits : 
+       Security : encryption of data.
+       SEO : Search Engine like google favor HTTPS websites, SSL/TLS certificate can boost search rankings.
+       Trust : Virtual indicators like padlock for trust from visitors
+
+    IMP : A http connection or URL converts to https one only when SSL/TLS certificates are in place. 
+
+    They are placed on web servers like Apache or NGINX.
+

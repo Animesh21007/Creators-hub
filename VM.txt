@@ -1,0 +1,13 @@
+1. VM is server or instance of node from one of machines by azure.
+
+SSH
+  - We ssh to log into linux and Unix-based systems remotely and execute commands, transfer files and manage systems.
+  - Remote access and uses strong encryption between client and server 
+  - It includes SCP and SFTP
+  - Client : Local machine (Uses SSH key to authenticate client)
+  - Server : Remote machine with which client wants to connect like in this case the VM
+
+  Keys
+   - Private keys : They stay secure on user's local machine
+   - Public keys : They are freely shared with ohter servers
+   - While authenticating the server creates a challenge that can only be solved by private key, when client solves the challenge it sends response to server.

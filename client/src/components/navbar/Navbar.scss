@@ -2,18 +2,25 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #013914;
+    // background-color: #013914;
+    background-color: #0d084d;
     color: white;
     position: sticky;
     width: 100%;
     top: 0;
-    padding: 0px 20px;
     z-index: 999;
     transition: 0.5s all ease;
   
     &.active {
-      background-color: white;
-      color: black;
+      // background-color: #032432;
+      background-color: #0d084d;
+      color: rgb(253, 248, 250);
+
+      hr{
+        // margin: 50px 0;
+        height: 0;
+        border: 1px solid darkblue
+    }
   
       button {
         background-color: white !important;
@@ -27,7 +34,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 20px 0px;
+      padding: 20px 20px;
   
       .logo {
         font-size: 34px;
@@ -60,13 +67,14 @@
           position: relative;
   
           img {
-            width: 32px;
-            height: 32px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             object-fit: cover;
             border:2px solid darkolivegreen;
-            padding: 1px;
-            background: #ebe9e9;
+            padding: 5px;
+            // background: #ebe9e9;
+            background: #d7d813;
             // color: #e7ede9;
           }
   

@@ -34,7 +34,8 @@ const Reviews = ({ gigId, star }) => {
 
 	return (
 		<div className="reviews">
-			<h2>Reviews</h2>
+			<p className="head">Reviews</p>
+			<hr />
 			{isLoading
 				? 'Loading...'
 				: error

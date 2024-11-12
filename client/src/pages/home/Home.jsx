@@ -1,7 +1,7 @@
 import React from 'react';
 import './Home.scss';
 import Featured from '../../components/featured/Featured';
-import TrustedBy from '../../components/trustedby/TrustedBy';
+// import TrustedBy from '../../components/trustedby/TrustedBy';
 import { cards, projects } from '../../data';
 import CategoryCard from '../../components/categoryCards/CategoryCard';
 import Slides from './../../components/slides/Slides';
@@ -11,7 +11,7 @@ const Home = () => {
 	return (
 		<div className="home">
 			<Featured />
-			<TrustedBy />
+			{/* <TrustedBy /> */}
 			<Slides slidesToShow={4} arrowsScroll={5}>
 				{cards.map((card) => (
 					<CategoryCard item={card} key={card.id * Math.random()} />
@@ -76,7 +76,7 @@ const Home = () => {
 				<div className="container">
 					<div className="item">
 						<h1>
-							fiverr <i>business</i>
+							<i>business</i>
 						</h1>
 						<h1>
 							A business solution designed for <i>teams</i>
@@ -99,7 +99,7 @@ const Home = () => {
 							<img src="/images/check.png" alt="" />
 							Manage teamwork and boost productivity with one powerful workspace
 						</div>
-						<button>Explore Fiverr Businesses</button>
+						<button>Explore Creators'hub Businesses</button>
 					</div>
 
 					<div className="item">

@@ -6,7 +6,7 @@ const Footer = () => {
 		<div className="footer">
 			<hr />
 			<div className="container">
-				<div className="top">
+				{/* <div className="top">
 					<div className="item">
 						<h2>Categories</h2>
 						<span>Graphic & Design</span>
@@ -77,7 +77,7 @@ const Footer = () => {
 						<span>Photography</span>
 						<span>Sitemap</span>
 					</div>
-				</div>
+				</div> */}
 				<hr />
 				<div className="bottom">
 					<div className="left">
@@ -89,17 +89,17 @@ const Footer = () => {
 							<img src="/images/twitter .png" alt="" />
 							<img src="/images/facebook.png" alt="" />
 							<img src="/images/linkedin.png" alt="" />
-							<img src="/images/pinterest.png" alt="" />
+							{/* <img src="/images/pinterest.png" alt="" /> */}
 							<img src="/images/instagram.png" alt="" />
 						</div>
-						<div className="link">
+						{/* <div className="link">
 							<img src="/images/language.png" alt="" />
 							English
-						</div>
-						<div className="link">
+						</div> */}
+						{/* <div className="link">
 							<img src="/images/coin.png" alt="" />
 							<span>USD</span>
-						</div>
+						</div> */}
 						<img src="/images/accessibility.png" alt="" />
 					</div>
 				</div>

@@ -46,15 +46,20 @@ const Navbar = () => {
 					</Link>
 				</div>
 				<div className="links">
-					<span>Business</span>
-					<span>Explore</span>
-					<span>English</span>
+					<Link to="/" className="link">
+						Home
+					</Link>
+					<Link to="/gigs" className="link">
+						Explore
+					</Link>
+					{/* 
+					<span>English</span> */}
 					{!currentUser && (
 						<Link to="/login" className="link">
 							Sign In
 						</Link>
 					)}
-					{!currentUser?.isSeller && <span>Become a Seller</span>}
+					{/* {!currentUser?.isSeller && <Link to='/'>Become a Seller</Link>} */}
 					{!currentUser && <button>Join</button>}
 					{currentUser && (
 						<div className="user">
@@ -94,7 +99,8 @@ const Navbar = () => {
 					)}
 				</div>
 			</div>
-			{(isActive || pathname !== '/') && (
+			{isActive || (pathname !== '/' && <hr />)}
+			{/* {(isActive || pathname !== '/') && (
 				<>
 					<hr />
 					<div className="menu">
@@ -128,7 +134,7 @@ const Navbar = () => {
 					</div>
 					<hr />
 				</>
-			)}
+			)} */}
 		</div>
 	);
 };

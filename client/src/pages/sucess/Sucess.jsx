@@ -24,7 +24,11 @@ const Sucess = () => {
 		makeRequest();
 	}, []);
 
-	return <div>Payment Successful. Please wait for few seconds</div>;
+	return (
+		<div className="Success">
+			Payment Successful. Please wait for few seconds
+		</div>
+	);
 };
 
 export default Sucess;

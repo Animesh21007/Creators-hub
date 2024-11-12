@@ -15,8 +15,17 @@ services:
       build: 
         context: ./server
       ports:
-        - "8080:8080"
+        - "5000:5000"
       volumes:
         - ./server:/app
       environment:
         - NODE_ENV=development
+
+    nginx:
+      build: 
+        context: ./nginx
+      ports: 
+        - "80:80" # Mapping port 80 on host to port 80 on NGINX container
+      depends_on:
+        - client
+        - server
