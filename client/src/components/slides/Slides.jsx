@@ -44,7 +44,7 @@ const Slide = ({ children, slidesToShow }) => {
 					responsive={responsive}
 					arrows={true} // Show navigation arrows
 					infinite={true} // Enable infinite scroll
-					autoPlay={false} // AutoPlay is optional
+					autoPlay={true} // AutoPlay is optional
 					autoPlaySpeed={3000}
 					slidesToSlide={1} // Number of slides to scroll
 				>

@@ -60,7 +60,11 @@ const Navbar = () => {
 						</Link>
 					)}
 					{/* {!currentUser?.isSeller && <Link to='/'>Become a Seller</Link>} */}
-					{!currentUser && <button>Join</button>}
+					{!currentUser && (
+						<button>
+							<Link to="/register">Sign Up</Link>
+						</button>
+					)}
 					{currentUser && (
 						<div className="user">
 							<img

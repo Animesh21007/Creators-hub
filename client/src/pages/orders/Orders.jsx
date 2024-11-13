@@ -63,29 +63,33 @@ const Orders = () => {
 							<td>Contact</td>
 						</tr>
 						{data &&
-							data.map((order) => (
-								<tr key={order._id}>
-									<td>
-										<img
-											className="img"
-											src={
-												order.img ||
-												'https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=1600'
-											}
-											alt=""
-										/>
-									</td>
-									<td>{order?.title}</td>
-									<td>{order?.price}</td>
-									<td>
-										<img
-											className="delete"
-											src="/images/message.png"
-											alt=""
-											onClick={() => handleConvo(order)}
-										/>
-									</td>
-								</tr>
+							(data?.length > 0 ? (
+								data.map((order) => (
+									<tr key={order._id}>
+										<td>
+											<img
+												className="img"
+												src={
+													order.img ||
+													'https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=1600'
+												}
+												alt=""
+											/>
+										</td>
+										<td>{order?.title}</td>
+										<td>{order?.price}</td>
+										<td>
+											<img
+												className="delete"
+												src="/images/message.png"
+												alt=""
+												onClick={() => handleConvo(order)}
+											/>
+										</td>
+									</tr>
+								))
+							) : (
+								<h2>No orders yet !</h2>
 							))}
 					</table>
 				)}
