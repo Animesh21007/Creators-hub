@@ -13,7 +13,7 @@ COPY . .
 # Exposing port 8080 of docker environment 
 EXPOSE 5000
 # RUNNING commands after to execute the code 
-ENV NODE_ENV=production
+# ENV NODE_ENV=production
 CMD [ "npm","start" ]
 
 
