@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const newRequest = axios.create({
-	baseURL: 'https://creators-hub-ik2d.onrender.com/',
+	baseURL: 'https://creators-hub-ik2d.onrender.com/api/',
 	withCredentials: true,
 	// Allows to store cookies
 	timeout: 10000,
