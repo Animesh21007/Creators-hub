@@ -16,7 +16,7 @@ const Orders = () => {
 	const { isLoading, data, error } = useQuery({
 		queryKey: ['order'],
 		queryFn: async () => {
-			const res = await newRequest.get('/orders/');
+			const res = await newRequest.get('/orders/get/');
 			console.log(res.data);
 			return res.data;
 		},
