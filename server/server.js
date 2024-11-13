@@ -11,12 +11,14 @@ import authRouter from './routes/auth.route.js';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
+import compression from 'compression';
 
 const app = express();
 dotenv.config();
 const PORT = process.env.PORT || 5000;
 const connectionString = process.env.MONGO_DB_URL;
 mongoose.set('strictQuery', true);
+const compression = compression();
 
 const connection = async () => {
 	try {
@@ -30,6 +32,7 @@ const connection = async () => {
 // app.use(bodyParser());
 app.use(express.json());
 app.use(cookieParser());
+app.use(compression());
 app.use(
 	cors({
 		origin: [
@@ -60,7 +63,7 @@ app.use((err, req, res, next) => {
 	return res.status(errStatus).send(errMsg);
 });
 
-app.listen(8080, () => {
+app.listen(PORT, () => {
 	connection();
 	console.log('Listening on port', PORT);
 });
