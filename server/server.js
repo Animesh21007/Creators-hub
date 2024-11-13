@@ -18,7 +18,6 @@ dotenv.config();
 const PORT = process.env.PORT || 5000;
 const connectionString = process.env.MONGO_DB_URL;
 mongoose.set('strictQuery', true);
-const compression = compression();
 
 const connection = async () => {
 	try {
