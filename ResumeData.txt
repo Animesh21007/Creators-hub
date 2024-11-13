@@ -34,3 +34,82 @@ Skills Gained: Share what you learned from this project, both technically (e.g.,
 
 9. Conclusion
 Why It Matters: Conclude with why this project is significant to you and how it relates to the position you are applying for. Emphasize your ability to translate ideas into functional applications and your enthusiasm for working on similar projects in the future.
+
+
+KEYWORDS : 
+
+1. Tanstack Query
+   - Easy caching means once fetched data is stored locally and data to any subsequent request for same will be taken from cache.
+   - Background auto data fetching keeps data fresh and avoids explicit data refetching.
+   - It allows optimistic update : I.E temporary updation of UI by mutation before confirmed by server.
+   - For a failed request tanstack allows periodic automatic retries and has custom error handling.
+   - Performance Optimization: By caching and using background updates, TanStack Query reduces the number of network requests, saving bandwidth and providing faster load times for frequently accessed data.
+
+   a. useQuery :
+        - Handles loading, error and data state automatically.
+        - If the user revisits the page, useQuery uses the cached data, avoiding redundant network requests.
+
+         const { data, isLoading, error } = useQuery({
+                queryKey: ['users'], 
+                    : The query key uniquely identifies each piece of data in the cache, so TanStack Query knows what data is associated with which request.
+                    : When a component uses useQuery with a specific query key, TanStack Query first checks the cache for data with that exact query key.
+                    : If the data is in the cache and is still valid, it’s used immediately, avoiding a network request.
+
+                queryFn: fetchUsers, : Function to fetch data.
+            });
+
+        
+    b. useMutation :
+        - Used for making changes to data, like creating, updating, or  deleting records on the server. 
+        - It does not automatically cache results but can be used in combination with useQuery to update the cache after the data has changed.
+
+            const mutation = useMutation(
+                addUser :  This method, provided by useMutation, triggers the mutation. Here, it’s called inside handleSubmit.
+                , {
+                onSuccess: () => {
+                    After a successful mutation, onSuccess invalidates the ['users'] query, triggering useQuery to refetch the list of users and show the newly added user
+
+                     This method, provided by useMutation, triggers the mutation. Here, it’s called inside handleSubmit.
+
+                queryClient.invalidateQueries(['users']);
+                },
+            });
+
+
+    c. queryClient : 
+        - A TanStack Query object used for cache management, allowing invalidation of specific queries.
+        - It’s a singleton that holds the cache of all the queries, tracks their states, and provides methods to manipulate them, like refetching, invalidating, and updating.
+
+
+2. Stripe payment gateway
+    -  allows you to handle payments, subscriptions, and transactions securely. 
+    - Stripe provides a set of APIs and tools to manage the entire payment process.
+
+    How it works?
+     1. When user wants to make purchase, they enter their payment details like card details, amount, payment method and items tobe purchased.
+     2. This is done by using stripe forms, important info is card detail.
+
+     3. This info is sent to backend.
+     4. Backend then sends a request to payment gateway API (here Stripe), specifically for creating Payment_intent. 
+     5.  A payment intent is essentially a session or an object that represents the payment request.
+     6. If needed backend will request a token for Authentication of transaction.
+     7. Server uses a secret API key to authenticate itself with payment gateway and initiate the payment process.
+    8. Backend then returns a client secret to frontend.
+
+    9. Once the backend creates the payment intent and returns the client_secret, the frontend uses this client_secret to confirm the payment with the payment gateway (e.g., Stripe or PayPal). The frontend uses the client-side SDK (like Stripe.js or PayPal SDK) to authenticate the transaction.
+    10. Frontend makes a request to payment gateway using client_secret to confirm payment method is valid and there is an intention of making payment.
+    11. Then payment gateway will process the payment based on payment method used.
+
+    12.  The gateway contacts the payment processor (e.g., Visa, MasterCard, or a digital wallet provider) and asks if the card or payment method is authorized for the specified amount.
+    13. The payment processor will check if the account has sufficient funds, if the card is valid, and if the transaction complies with security standards.
+    14. If the payment is authorized and successfully authenticated, the gateway settles the transaction by transferring the funds from the customer’s account to the merchant’s account.
+
+    15. After the payment is successfully processed, the backend and frontend need to be synchronised.
+    16. Backend recieves confirmation (through webhook or API response) A webhook is a mechanism for the payment gateway to notify the backend about the status of a transaction (successful, failed, etc.).
+    17. The frontend receives a notification (either through the response from the backend or through a webhook) that the payment was successful.
+
+        Webhooks: Payment gateways provide webhooks to notify the backend about the status of the payment after the transaction is processed.
+
+        Backend: The backend updates the status of the order in the database, sends a confirmation email to the user, and may initiate shipping or fulfillment processes if it's a physical product or grant access if it's a digital service (like a gig or subscription).
+
+

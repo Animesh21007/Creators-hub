@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #33026a;
+    background-color: #314f73;
     // background-color: #0d084d;
     color: white;
     position: sticky;
@@ -12,8 +12,7 @@
     transition: 0.5s all ease;
   
     &.active {
-      // background-color: #032432;
-      background-color: #314f73;
+      background-color: #33026a;
       color: rgb(253, 248, 250);
 
       hr{
