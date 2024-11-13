@@ -38,7 +38,7 @@ app.use(
 			'http://localhost:5173',
 			'http://localhost:5174',
 			'https://api.cloudinary.com/v1_1/dagb2yluc/image/upload',
-			'https://creatorshub.netlify.app/',
+			'https://creatorshub.netlify.app',
 		],
 		methods: ['GET', 'POST', 'DELETE', 'PUT', 'OPTIONS'],
 		credentials: true,
