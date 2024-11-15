@@ -1,7 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './Gigs.scss';
 import GigCard from '../../components/gigCard/GigCard';
-import { gigs } from './../../data';
+// import { gigs } from './../../data';
+import Skeleton from 'react-loading-skeleton';
+import ListSkeleton from '../../components/listskeleton/ListSkeleton';
 import { useQuery } from '@tanstack/react-query';
 import newRequest from '../../utils/api';
 import { useLocation } from 'react-router-dom';
@@ -29,7 +31,37 @@ const Gigs = () => {
 	const { isLoading, error, data, refetch } = useQuery(obj);
 	// console.log(data);
 
-	if (isLoading) return <p>Loading ... </p>;
+	if (isLoading)
+		return (
+			<div className="gigcard" style={{ margin: 'auto' }}>
+				{/* Skeleton for cover image */}
+				<Skeleton height={200} width="100%" style={{ marginBottom: '10px' }} />
+
+				<div className="info">
+					{/* Skeleton for user */}
+					<div className="user">
+						<Skeleton circle height={40} width={40} />
+						<Skeleton height={15} width={100} style={{ marginLeft: '10px' }} />
+					</div>
+
+					{/* Skeleton for description */}
+					<ListSkeleton count={1} height={15} />
+
+					{/* Skeleton for star rating */}
+					<ListSkeleton count={1} height={15} />
+
+					<hr />
+
+					{/* Skeleton for price section */}
+					<div className="details">
+						<Skeleton height={200} width="40%" />
+						<div className="price">
+							<Skeleton height={20} width="50%" />
+						</div>
+					</div>
+				</div>
+			</div>
+		);
 
 	const reSort = (type) => {
 		setSort((prev) => type);

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './App.scss';
+import 'react-loading-skeleton/dist/skeleton.css';
 import Navbar from './components/navbar/Navbar';
 import Footer from './components/footer/Footer';
 import Home from './pages/home/Home';
@@ -20,6 +21,8 @@ import {
 } from '@tanstack/react-query';
 import Pay from './pages/pay/Pay';
 import Sucess from './pages/sucess/Sucess';
+import ProtectedRoute from './context/ProtectedRoute';
+import { Toaster } from 'react-hot-toast';
 
 const Layout = () => {
 	const queryClient = new QueryClient();
@@ -27,6 +30,7 @@ const Layout = () => {
 	return (
 		<div className="app">
 			<QueryClientProvider client={queryClient}>
+				<Toaster />
 				<Navbar />
 				<Outlet />
 				<Footer />
@@ -62,7 +66,11 @@ const router = createBrowserRouter([
 			},
 			{
 				path: '/orders',
-				element: <Orders />,
+				element: (
+					<ProtectedRoute>
+						<Orders />,
+					</ProtectedRoute>
+				),
 			},
 			{
 				path: '/mygigs',
