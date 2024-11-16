@@ -81,7 +81,7 @@ const CheckoutForm = ({ dpmCheckerLink }) => {
 				<h3>Complete your transaction</h3>
 				<LinkAuthenticationElement
 					id="link-authentication-element"
-					onChange={(e) => setEmail(e.target.value)}
+					onChange={(e) => setEmail(e.target?.value)}
 				/>
 				<PaymentElement id="payment-element" options={paymentElementOptions} />
 				<button disabled={isLoading || !stripe || !elements} id="submit">

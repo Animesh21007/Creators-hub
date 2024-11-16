@@ -1,10 +1,12 @@
 import React, { useContext, createContext } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 
+// Color code : #211d1d
+
 const ToastContext = createContext();
 
 export const ToastProvider = ({ children }) => {
-	const showToast = (message, type = 'success') => {
+	const showToast = (type = 'success', message) => {
 		switch (type) {
 			case 'success':
 				toast.success(message);
@@ -14,6 +16,9 @@ export const ToastProvider = ({ children }) => {
 				break;
 			case 'loading':
 				toast.loading(message);
+				break;
+			case undefined:
+				toast.error('There was an error!');
 				break;
 			default:
 				toast(message);

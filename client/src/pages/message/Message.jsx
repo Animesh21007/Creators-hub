@@ -15,7 +15,7 @@ const Message = () => {
 		queryKey: ['messages'],
 		queryFn: async () => {
 			const res = await newRequest.get(`/messages/${id}`);
-			console.log(res.data[2].desc);
+			// console.log(res.data[2].desc);
 			return res.data;
 		},
 	});

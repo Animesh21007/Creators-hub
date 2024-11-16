@@ -19,7 +19,7 @@ const Add = () => {
 		e.preventDefault();
 		dispatch({
 			type: 'CHANGE_INPUT',
-			payload: { name: e.target.name, value: e.target.value },
+			payload: { name: e.target.name, value: e.target.value.toString() },
 		});
 	};
 
@@ -29,7 +29,7 @@ const Add = () => {
 			type: 'ADD_FEATURE',
 			payload: e.target[0].value,
 		});
-		console.log(state);
+		// console.log(state);
 		e.target[0].value = '';
 	};
 
@@ -58,18 +58,33 @@ const Add = () => {
 
 	const mutation = useMutation({
 		mutationFn: async (gig) => {
-			const res = await newRequest.post(`/gigs/newGig`, gig);
-			return res;
+			try {
+				const res = await newRequest.post(`/gigs/newGig`, gig);
+				console.log(res, 'Add res');
+				return res; // Return the data from the server
+			} catch (error) {
+				console.log(error.response.data, 'Err');
+				throw error; // This will be caught by onError handler
+			}
 		},
 		onSuccess: () => {
 			queryClient.invalidateQueries(['myGigs']);
+		},
+		onError: (e) => {
+			if (e.response && e.response.data) {
+				toast('error', e.response.data.message);
+			}
 		},
 	});
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		mutation.mutate(state);
-		navigate('/mygigs');
+		try {
+			mutation.mutate(state);
+		} catch (er) {
+			console.log('Ejfjka');
+		}
+		// navigate('/mygigs');
 	};
 
 	return (
@@ -78,14 +93,14 @@ const Add = () => {
 				<h1>Add New Gig</h1>
 				<div className="sections">
 					<div className="info">
-						<label htmlFor="">Title</label>
+						<label htmlFor="title">Title</label>
 						<input
 							name="title"
 							type="text"
 							placeholder="e.g. I will do something I'm really good at"
 							onChange={handleChange}
 						/>
-						<label htmlFor="">Category</label>
+						<label htmlFor="cat">Category</label>
 						<select name="cat" id="cat" onChange={handleChange}>
 							<option value="design">Design</option>
 							<option value="web">Web Development</option>
@@ -94,15 +109,17 @@ const Add = () => {
 						</select>
 						<div className="images">
 							<div className="imagesInputs">
-								<label htmlFor="">Cover Image</label>
+								<label htmlFor="file1">Cover Image</label>
 								<input
 									type="file"
+									id="file1"
 									onChange={(e) => setSingleFile(e.target.files[0])}
 								/>
-								<label htmlFor="">Upload Imagse</label>
+								<label htmlFor="file2">Upload Imagse</label>
 								<input
 									type="file"
 									multiple
+									id="file2"
 									onChange={(e) => setFiles(e.target.files)}
 								/>
 							</div>
@@ -116,6 +133,7 @@ const Add = () => {
 							cols="30"
 							rows="16"
 							id=""
+							type="text"
 							onChange={handleChange}
 							placeholder="Brief description to introduce your sevice to customers"></textarea>
 						<button onClick={(e) => handleSubmit(e)}>Create</button>
@@ -134,6 +152,7 @@ const Add = () => {
 							onChange={handleChange}
 							id=""
 							cols="30"
+							type="text"
 							rows="10"
 							placeholder="Short description of your service"></textarea>
 						<label htmlFor="">Delivery Time(e.g. 3 days)</label>
@@ -143,9 +162,9 @@ const Add = () => {
 							onChange={handleChange}
 							name="deliveryTime"
 						/>
-						<label htmlFor="">Revision Number</label>
-						<input type="number" min={1} name="revisionNumber" />
-						<label htmlFor="">Add Features</label>
+						<label htmlFor="revNum">Revision Number</label>
+						<input type="number" min={1} name="revisionNumber" id="revNum" />
+						<label htmlFor="Feature">Add Features</label>
 						<form action="" className="Add" onSubmit={handleFeature}>
 							<input type="text" placeholder="e.g. page design" />
 							<button type="submit">add</button>

@@ -4,18 +4,18 @@ import { useQuery } from '@tanstack/react-query';
 import newRequest from './../../utils/api';
 
 const Review = ({ star, review }) => {
-	console.log(review);
+	// console.log(review);
 
 	const { isLoading, data, error } = useQuery({
 		queryKey: [review._id],
 		queryFn: async () => {
 			const res = await newRequest.get(`/users/${review.userId}`);
-			console.log(res.data);
+			// console.log(res.data);
 			return res.data;
 		},
 	});
 
-	console.log(isLoading ? '' : data);
+	// console.log(isLoading ? '' : data);
 
 	return (
 		<div className="review">

@@ -15,11 +15,9 @@ const Login = () => {
 	const navigate = useNavigate();
 
 	const onSubmit = async (data) => {
-		console.log('Submit', data);
-
 		try {
 			const res = await newRequest.post('/auth/login', data);
-			console.log(res);
+			// console.log(res);
 			if (res) {
 				localStorage.setItem('userInfo', JSON.stringify(res.data));
 				navigate('/');

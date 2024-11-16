@@ -18,7 +18,7 @@ export const gigReducer = (state, action) => {
 		case 'CHANGE_INPUT':
 			return {
 				...state,
-				[action.payload.name]: [action.payload.value],
+				[action.payload.name]: action.payload.value,
 			};
 		case 'ADD_IMAGES':
 			return {

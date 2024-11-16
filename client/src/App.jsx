@@ -30,10 +30,18 @@ const Layout = () => {
 	return (
 		<div className="app">
 			<QueryClientProvider client={queryClient}>
-				<Toaster />
-				<Navbar />
-				<Outlet />
-				<Footer />
+				<div className="main">
+					<Toaster />
+					<span>
+						<Navbar />
+					</span>
+					<span className="out">
+						<Outlet />
+					</span>
+					<span className="bot">
+						<Footer />
+					</span>
+				</div>
 			</QueryClientProvider>
 		</div>
 	);
@@ -68,33 +76,57 @@ const router = createBrowserRouter([
 				path: '/orders',
 				element: (
 					<ProtectedRoute>
-						<Orders />,
+						<Orders />
 					</ProtectedRoute>
 				),
 			},
 			{
 				path: '/mygigs',
-				element: <MyGigs />,
+				element: (
+					<ProtectedRoute>
+						<MyGigs />
+					</ProtectedRoute>
+				),
 			},
 			{
 				path: '/add',
-				element: <Add />,
+				element: (
+					<ProtectedRoute>
+						<Add />
+					</ProtectedRoute>
+				),
 			},
 			{
 				path: '/message/:id',
-				element: <Message />,
+				element: (
+					<ProtectedRoute>
+						<Message />
+					</ProtectedRoute>
+				),
 			},
 			{
 				path: '/messages',
-				element: <Messages />,
+				element: (
+					<ProtectedRoute>
+						<Messages />
+					</ProtectedRoute>
+				),
 			},
 			{
 				path: '/pay/:id',
-				element: <Pay />,
+				element: (
+					<ProtectedRoute>
+						<Pay />
+					</ProtectedRoute>
+				),
 			},
 			{
 				path: '/success',
-				element: <Sucess />,
+				element: (
+					<ProtectedRoute>
+						<Sucess />
+					</ProtectedRoute>
+				),
 			},
 		],
 	},

@@ -5,7 +5,7 @@
     .container{
         width: 100%;
         padding: 50px 0;
-        min-height: 69vh;
+        // min-height: 69vh;
 
         .title{
             display: flex;
@@ -58,6 +58,12 @@
                     background-color: #1dbf730f;
                 }
             }
+        }
+        .ordeal{
+            text-align: center;
+            margin-top: 20%;
+            font-size: 38px;
+            color: #3d6990;
         }
     }
     

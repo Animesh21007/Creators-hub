@@ -27,14 +27,13 @@ const Pay = () => {
 	};
 
 	useEffect(() => {
-		console.log(import.meta.env.VITE_STRIPE_PUBLIC_KEY + '');
 		const handlePayment = async () => {
 			try {
 				const res = await newRequest.post(
 					`/orders/create-payment-intent/${id}`
 				);
 				setClientSecret(res.data.clientSecret);
-				console.log(res.data);
+				// console.log(res.data);
 			} catch (err) {
 				console.log(err);
 			}

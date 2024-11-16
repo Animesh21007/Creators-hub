@@ -3,9 +3,11 @@ import Review from '../../components/review/Review';
 import './Reviews.scss';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import newRequest from './../../utils/api';
+import { useToast } from '../../context/ToastContext';
 
 const Reviews = ({ gigId, star }) => {
 	const queryClient = useQueryClient();
+	const toast = useToast();
 
 	const { isLoading, data, error } = useQuery({
 		queryKey: [`reviews`],
@@ -18,10 +20,23 @@ const Reviews = ({ gigId, star }) => {
 
 	const mutation = useMutation({
 		mutationFn: async (review) => {
-			return newRequest.post('/reviews/create', review);
+			try {
+				const res = await newRequest.post('/reviews/create', review);
+				console.log(res, 'review response');
+				return res; // Return the data from the server
+			} catch (error) {
+				console.log(error, 'Err');
+				throw error; // This will be caught by onError handler
+			}
 		},
 		onSuccess: () => {
 			queryClient.invalidateQueries('reviews');
+		},
+		onError: (e) => {
+			if (e.response && e.response.data) {
+				// Server responded with a status code outside the 2xx range
+				toast('error', e.response.data.message);
+			}
 		},
 	});
 

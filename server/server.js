@@ -59,7 +59,12 @@ app.use((err, req, res, next) => {
 	const errStatus = err.status || 500;
 	const errMsg = err.message || 'Something went wrong!';
 	console.log(err);
-	return res.status(errStatus).send(errMsg);
+	return res.status(errStatus).json({
+		success: false,
+		status: errStatus, // HTTP status code
+		message: errMsg, // Error message
+		stack: process.env.NODE_ENV === 'development' ? err.stack : undefined, // Include stack trace only in development
+	});
 });
 
 app.listen(PORT, () => {

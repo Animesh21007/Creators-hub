@@ -1,8 +1,14 @@
+class AppError extends Error {
+	constructor(status, message) {
+		super(message);
+		this.status = status;
+		this.isOperation = true;
+		Error.captureStackTrace(this, this.constructor); // Clean stack trace
+	}
+}
+
 const createError = (errStatus, errMsg) => {
-	const err = new Error();
-	err.status = errStatus;
-	err.message = errMsg;
-	return err;
+	throw new AppError(errStatus, errMsg);
 };
 
 export default createError;

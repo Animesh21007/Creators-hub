@@ -10,7 +10,6 @@ const GigCard = ({ item }) => {
 		queryKey: [`${item._id}`],
 		queryFn: async () => {
 			const res = await newRequest(`/users/${item.userId}`);
-			console.log(res.data, item, 'Something .... ');
 			return res.data;
 		},
 	});

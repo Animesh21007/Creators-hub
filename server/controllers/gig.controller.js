@@ -2,7 +2,6 @@ import Gig from '../models/gig.model.js';
 import createError from '../utils/errorHandle.js';
 
 export const createGig = async (req, res, next) => {
-	console.log(req);
 	if (!req.isSeller)
 		return next(createError(403, 'Only seller can create Gigs!'));
 	try {
@@ -24,7 +23,7 @@ export const deleteGig = async (req, res, next) => {
 
 	try {
 		await Gig.findByIdAndDelete(req.params.id);
-		return res.status(200).send('Gig deleted successfully!');
+		return res.status(200).send('deleted successfully!');
 	} catch (err) {
 		console.log('Error : ', err);
 		next(err);
@@ -33,7 +32,7 @@ export const deleteGig = async (req, res, next) => {
 export const getGig = async (req, res, next) => {
 	try {
 		const gig = await Gig.findById(req.params.id);
-		if (!gig) return next(createError(404, 'Gig not found!'));
+		if (!gig) return next(createError(404, 'not found!'));
 
 		return res.status(200).send(gig);
 	} catch (err) {
@@ -43,7 +42,7 @@ export const getGig = async (req, res, next) => {
 };
 export const getGigs = async (req, res, next) => {
 	const qur = req.query;
-	console.log(qur);
+	// console.log(qur);
 	const filter = {
 		...(qur.userId && { userId: qur.userId }),
 		...(qur.cat && { cat: qur.cat }),

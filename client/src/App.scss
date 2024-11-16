@@ -4,6 +4,22 @@
         color: inherit;
     }
     #root,.app{
-        min-height: 100vh;
+        // min-height: 100vh;
+    }
+}
+.main{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    position: relative;
+
+    .out{
+        margin-bottom: 70px;
+    }
+
+    .bot{
+        bottom: 0;
+        position: absolute;
+        width: 100%;
     }
 }

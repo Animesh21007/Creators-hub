@@ -71,11 +71,11 @@ const Gigs = () => {
 	const doApply = () => {
 		// console.log(data);
 		refetch();
-		console.log(location);
+		// console.log(location);
 		minRef.current.value = null;
 		maxRef.current.value = null;
 	};
-	console.log(data);
+	// console.log(data);
 
 	// useEffect(() => {
 	// 	refetch();
