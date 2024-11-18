@@ -53,7 +53,7 @@ const Message = () => {
 					{data.map((msg) => (
 						<div className="messages" key={msg._id}>
 							<div
-								className={msg.userId !== curruser.id ? 'owner item' : 'item'}>
+								className={msg.userId !== curruser._id ? 'owner item' : 'item'}>
 								<img
 									src="https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=1600"
 									alt=""

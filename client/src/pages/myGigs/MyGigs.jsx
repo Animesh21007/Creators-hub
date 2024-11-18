@@ -13,7 +13,7 @@ const MyGigs = () => {
 	const { isLoading, error, data } = useQuery({
 		queryKey: ['myGigs'],
 		queryFn: async () => {
-			const res = await newRequest.get(`/gigs?userId=${curruser.id}`);
+			const res = await newRequest.get(`/gigs?userId=${curruser._id}`);
 			return res.data;
 		},
 	});

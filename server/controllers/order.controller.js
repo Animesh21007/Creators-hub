@@ -60,7 +60,7 @@ export const confirm = async (req, res, next) => {
 					isCompleted: true,
 				},
 			},
-			{ now: true }
+			{ new: true }
 		);
 		res.status(200).send('Order has been confirmed!');
 	} catch (err) {
