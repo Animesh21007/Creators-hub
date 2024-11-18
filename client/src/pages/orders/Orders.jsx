@@ -28,17 +28,23 @@ const Orders = () => {
 		const id = sellerId + buyerId;
 
 		try {
-			const res = await newRequest.get(`/conversations/single/${id}`);
-			navigate(`/messages/${res.conversationId}`);
+			console.log(id);
+			const res = await newRequest.get(
+				`/conversations/single/${id.toString()}`
+			);
+			if (res && res.data) {
+				navigate(`/message/${res.data.id}`);
+			}
 			console.log(res);
 		} catch (err) {
-			// if(err)
-			if (err.status === 404) {
+			console.log(err);
+			if (err.status === 404 || err instanceof TypeError) {
 				const res2 = await newRequest.post('/conversations/createConvo', {
 					to: curruser.isSeller ? buyerId : sellerId,
 				});
+				console.log(res2);
 				if (res2) {
-					navigate(`/messages/${res2.conversationId}`);
+					navigate(`/message/${res2.data.id}`);
 				}
 			}
 		}
