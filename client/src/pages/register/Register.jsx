@@ -69,7 +69,7 @@ const Register = () => {
 						{...register('password', { required: true })}
 					/>
 
-					<label>Profile Picture</label>
+					<label>Profile Picture(Max size : 11.11 mb) </label>
 					<input type="file" onChange={(e) => setImgfile(e.target.files[0])} />
 
 					<label>Country</label>
