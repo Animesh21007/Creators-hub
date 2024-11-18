@@ -27,9 +27,17 @@ const Layout = () => {
 	return (
 		<div className="app">
 			<QueryClientProvider client={queryClient}>
-				<Navbar />
-				<Outlet />
-				<Footer />
+				<div className="main">
+					<span>
+						<Navbar />
+					</span>
+					<span className="out">
+						<Outlet />
+					</span>
+					<span className="bot">
+						<Footer />
+					</span>
+				</div>
 			</QueryClientProvider>
 		</div>
 	);
