@@ -10,7 +10,7 @@ RUN npm rebuild bcrypt --build-from-source
 # Copying everything i.e files inside the host folder
 
 COPY . .
-# Exposing port 8080 of docker environment 
+# Exposing port  of docker environment 
 EXPOSE 5000
 # RUNNING commands after to execute the code 
 # ENV NODE_ENV=production

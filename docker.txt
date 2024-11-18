@@ -1,9 +1,0 @@
-Building a docker image
-
-    1. Import base image from repo => FROM node:20
-    2. State the working directory inside the image => WORKDIR /<name>
-    3. Copy the package and package-lock.json, copied first for caching the dependancies => COPY package*.json ./ 
-    4. Run the npm install command to install dependancies => RUN npm install
-    5. Copying everything from the root folder => COPY . .
-    6. Exposing the port => EXPOSE <port>
-    7. Run commands => CMD ["npm", "start"]
