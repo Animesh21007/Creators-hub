@@ -85,11 +85,11 @@ const Login = () => {
 						<div className="field padding-bottom--24">
 							<input type="submit" name="submit" value="Continue" />
 						</div>
-						<div className="field">
+						{/* <div className="field">
 							<a className="ssolink" href="#">
 								Use single sign-on (Google) instead
 							</a>
-						</div>
+						</div> */}
 					</form>
 				</div>
 			</div>
