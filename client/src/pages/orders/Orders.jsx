@@ -29,16 +29,16 @@ const Orders = () => {
 
 		try {
 			const res = await newRequest.get(`/conversations/single/${id}`);
-			navigate(`/messages/${res.conversationId}`);
+			navigate(`/messages/${res.data.id}`);
 			console.log(res);
 		} catch (err) {
 			// if(err)
-			if (err.status === 404) {
+			if (err.status === 404 || err instanceof TypeError) {
 				const res2 = await newRequest.post('/conversations/createConvo', {
 					to: curruser.isSeller ? buyerId : sellerId,
 				});
 				if (res2) {
-					navigate(`/messages/${res2.conversationId}`);
+					navigate(`/messages/${res2.data.id}`);
 				}
 			}
 		}
