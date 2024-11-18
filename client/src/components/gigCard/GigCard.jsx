@@ -57,7 +57,7 @@ const GigCard = ({ item }) => {
 										<img src={item.cover} alt="" />
 										<div className="price">
 											<span>STARTING AT</span>
-											<h2>${item.price}</h2>
+											<h2>₹ {item.price}</h2>
 										</div>
 									</div>
 								</div>
