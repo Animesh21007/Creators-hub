@@ -44,7 +44,7 @@ const GigCard = ({ item }) => {
 												) || 0
 											)
 												.fill()
-												.map((item, i) => (
+												?.map((item, i) => (
 													<img src={star} alt="" key={i * Math.random()} />
 												))}
 										</span>

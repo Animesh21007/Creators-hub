@@ -15,7 +15,7 @@ const Message = () => {
 		queryKey: ['messages'],
 		queryFn: async () => {
 			const res = await newRequest.get(`/messages/${id}`);
-			console.log(res.data[2].desc);
+			console.log(res.data);
 			return res.data;
 		},
 	});
@@ -50,10 +50,10 @@ const Message = () => {
 					<span className="breadcrumbs">
 						<Link to="/messages">MESSAGES</Link>'{'>'}' JOHN DOE '{'>'}'
 					</span>
-					{data.map((msg) => (
+					{data?.map((msg) => (
 						<div className="messages" key={msg._id}>
 							<div
-								className={msg.userId !== curruser.id ? 'owner item' : 'item'}>
+								className={msg.userId !== curruser._id ? 'owner item' : 'item'}>
 								<img
 									src="https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=1600"
 									alt=""

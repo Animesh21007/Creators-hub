@@ -39,7 +39,7 @@ const Add = () => {
 			const cover = await upload(singleFile);
 
 			const images = await Promise.all(
-				[...files].map(async (file) => {
+				[...files]?.map(async (file) => {
 					const url = await upload(file);
 					return url;
 				})

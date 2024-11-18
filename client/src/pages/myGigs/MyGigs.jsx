@@ -13,14 +13,14 @@ const MyGigs = () => {
 	const { isLoading, error, data } = useQuery({
 		queryKey: ['myGigs'],
 		queryFn: async () => {
-			const res = await newRequest.get(`/gigs?userId=${curruser.id}`);
+			const res = await newRequest.get(`/gigs?userId=${curruser._id}`);
 			return res.data;
 		},
 	});
 
 	const mutation = useMutation({
 		mutationFn: (id) => {
-			return newRequest.delete(`/gig/${id}`);
+			return newRequest.delete(`/gigs/delGig/${id}`);
 		},
 		onSuccess: () => {
 			queryClient.invalidateQueries(['myGigs']);
@@ -53,7 +53,7 @@ const MyGigs = () => {
 							<td>Sales</td>
 							<td>Action</td>
 						</tr>
-						{data.map((gig) => (
+						{data?.map((gig) => (
 							<tr>
 								<td key={gig._id}>
 									<img

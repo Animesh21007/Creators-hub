@@ -13,7 +13,7 @@ const Home = () => {
 			<Featured />
 			{/* <TrustedBy /> */}
 			<Slides slidesToShow={4} arrowsScroll={5}>
-				{cards.map((card) => (
+				{cards?.map((card) => (
 					<CategoryCard item={card} key={card.id * Math.random()} />
 				))}
 			</Slides>
@@ -103,7 +103,7 @@ const Home = () => {
 				</div>
 			</div>
 			<Slides slidesToShow={3} arrowsScroll={5}>
-				{projects.map((card) => (
+				{projects?.map((card) => (
 					<ProjectCard item={card} key={card.id * Math.random()} />
 				))}
 			</Slides>

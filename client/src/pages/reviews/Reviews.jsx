@@ -40,7 +40,7 @@ const Reviews = ({ gigId, star }) => {
 				? 'Loading...'
 				: error
 				? 'Something went wrong!'
-				: data.map((review) => (
+				: data?.map((review) => (
 						<Review key={review._id} star={star} review={review} />
 				  ))}
 			<div className="add">

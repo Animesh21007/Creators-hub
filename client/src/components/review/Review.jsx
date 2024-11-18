@@ -47,7 +47,7 @@ const Review = ({ star, review }) => {
 						) : (
 							Array(review.star)
 								.fill()
-								.map((item, i) => (
+								?.map((item, i) => (
 									<img src={star} alt="" key={i * Math.random()} />
 								))
 						)}

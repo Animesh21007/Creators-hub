@@ -58,7 +58,7 @@ const Messages = () => {
 							</tr>
 						</thead>
 						<tbody>
-							{data.map((convo) => (
+							{data?.map((convo) => (
 								<tr
 									key={Math.random().toString(36)}
 									className={

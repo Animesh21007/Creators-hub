@@ -86,7 +86,7 @@ const Gig = () => {
 								autoPlaySpeed={3000}
 								slidesToSlide={1}>
 								{data && data.images && data.images.length > 0 ? (
-									data.images.map((img, idx) => (
+									data?.images?.map((img, idx) => (
 										<img key={idx} src={img} alt="" />
 									))
 								) : (
@@ -118,7 +118,7 @@ const Gig = () => {
 															Math.floor(data.totalStars / data.starNumber)
 														)
 															.fill()
-															.map((item, i) => (
+															?.map((item, i) => (
 																<img
 																	src={star}
 																	alt=""

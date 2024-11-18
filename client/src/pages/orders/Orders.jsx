@@ -64,7 +64,7 @@ const Orders = () => {
 						</tr>
 						{data &&
 							(data?.length > 0 ? (
-								data.map((order) => (
+								data?.map((order) => (
 									<tr key={order._id}>
 										<td>
 											<img
