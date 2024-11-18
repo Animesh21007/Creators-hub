@@ -21,15 +21,15 @@ const Home = () => {
 				<div className="container">
 					<div className="cont">
 						<div className="item">
-							<h1>A whole world of freelance talent at your fingertips</h1>
+							<h1>
+								Explore a vast pool of skilled professionals ready to tackle
+								your projects.
+							</h1>
 							<div className="title">
 								<img src="/images/check.png" alt="" />
-								The best for every budget
+								Top-notch services tailored to your needs.
 							</div>
-							<p>
-								Find high-quality services at every price point. No hourly
-								rates, just project-based pricing.
-							</p>
+							<p>Transparent pricing—pay for results, not hours.</p>
 						</div>
 						<div className="item">
 							<h1>A whole world of freelance talent at your fingertips</h1>
@@ -43,38 +43,33 @@ const Home = () => {
 							</p>
 						</div>
 						<div className="item">
-							<h1>A whole world of freelance talent at your fingertips</h1>
+							<h1>Unlock expert talent from around the globe with ease</h1>
 							<div className="title">
 								<img src="/images/check.png" alt="" />
-								The best for every budget
+								Quality you can trust, no matter your budget
 							</div>
-							<p>
-								Find high-quality services at every price point. No hourly
-								rates, just project-based pricing.
-							</p>
+							<p>Simple, project-based pricing for every service you need.</p>
 						</div>
 						<div className="item">
-							<h1>A whole world of freelance talent at your fingertips</h1>
+							<h1>Connect with freelancers who bring your ideas to life</h1>
 							<div className="title">
 								<img src="/images/check.png" alt="" />
-								The best for every budget
+								No hourly charges—only clear and fair project ratesAffordable
+								excellence for every kind of project
 							</div>
-							<p>
-								Find high-quality services at every price point. No hourly
-								rates, just project-based pricing.
-							</p>
+							<p>No hourly charges—only clear and fair project rates.</p>
 						</div>
 					</div>
 
-					<div className="item">
+					{/* <div className="item">
 						<video src="" controls></video>
-					</div>
+					</div> */}
 				</div>
 			</div>
 
 			<div className="features dark">
 				<div className="container">
-					<div className="item">
+					<div className="item" id="item2">
 						<h1>
 							<i>business</i>
 						</h1>

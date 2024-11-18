@@ -50,10 +50,30 @@
                 flex: 1;
             }
 
+            #item2{
+                background-color: inherit;
+                p{
+                    color: #f1fdf7;
+                }
+                &:nth-child(odd){
+                   margin: 0;
+                   
+                }
+
+                &:nth-child(even){
+                    
+                   margin: 0;
+                    // margin-right: 30%;
+                }
+            }
             .item{
                 display: flex;
                 flex-direction: column;
                 gap: 15px;
+                margin-bottom: 14px;
+                padding: 14px;
+                color: black;
+                border-radius: 14px;
 
                 &:first-child{
                     flex: 1;
@@ -61,6 +81,17 @@
 
                 &:last-child{
                     flex: 1;
+                }
+                 
+                &:nth-child(odd){
+                    background-color: antiquewhite;
+                    margin-left: 40%;
+                }
+
+                &:nth-child(even){
+                    background-color: rgb(180, 171, 219);
+                    width: fit-content;
+                    // margin-right: 30%;
                 }
 
                 h1{
@@ -70,7 +101,7 @@
                 }
                 p{
                    font-size: 18px;
-                   color: gray;
+                   color: rgb(16, 17, 25);
                    font-weight: 300;
                    line-height: 28px;
                    letter-spacing: 1px; 
@@ -87,7 +118,7 @@
                     gap: 10px;
                     font-weight: 500;
                     font-size: 18px;
-                    color: gray;
+                    color: rgb(53, 34, 34);
 
                     img{
                         width: 24px;
