@@ -27,7 +27,7 @@ const Pay = () => {
 	};
 
 	useEffect(() => {
-		console.log(import.meta.env.VITE_STRIPE_PUBLIC_KEY + '');
+		// console.log(import.meta.env.VITE_STRIPE_PUBLIC_KEY + '');
 		const handlePayment = async () => {
 			try {
 				const res = await newRequest.post(
