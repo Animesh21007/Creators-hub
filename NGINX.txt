@@ -35,9 +35,85 @@ NGINX Configuraion Terms :
 
     2. Location Block : Used within a server blocks to handle specific URL patterns. Ex. location /static/ serves static files.
 
+        a. location /api/ { ... }
+            Purpose:
+            Specifies how NGINX should handle requests that start with /api/.
+            - Requests like http://yourdomain.com/api/some-endpoint will be processed using this block.
+
+        b. proxy_pass https://creators-hub-ik2d.onrender.com/api/;
+            Purpose:
+            Defines the upstream server to which requests should be forwarded.
+            - Requests to http://yourdomain.com/api/ are forwarded to https://creators-hub-ik2d.onrender.com/api/.
+
+        c. proxy_set_header Host $host;
+            Purpose:
+            Sets the Host header in the proxied request to the value of $host, which represents the original hostname of the client request.
+            - Helps the backend server recognize the original hostname instead of the NGINX server's hostname.
+
+        d. proxy_set_header X-Real_IP $remote_addr;
+            Purpose:
+            Adds the client's real IP address ($remote_addr) to the X-Real-IP header.
+            - The backend server can identify the original client's IP address, which is useful for logging, analytics, or security.
+
+        f. proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            Purpose:
+            Appends the client's IP address to the X-Forwarded-For header.
+            - The backend can track the chain of client IPs if the request passed through multiple proxies.
+
+        g. d. proxy_set_header X-Forwarded-Proto $scheme;
+            Purpose:
+            Sets the X-Forwarded-Proto header to the scheme (http or https) of the original client request.
+            - Helps the backend determine whether the original request was made over HTTP or HTTPS.
+
+
+            Host becomes the original hostname.
+            X-Real-IP contains the client’s IP address.
+            X-Forwarded-For tracks the request's proxy chain.
+            X-Forwarded-Proto informs the backend of the original request protocol.
+
     3. Proxy pass : Directs NGNIX to forward requests to another server or service, essential for using NGNIX as a reverse proxy.
 
     4. Upstream : Defines a group of backend servers for load balancing.
+                  To group one or more servers under a single name.
+                  To distribute client requests among the servers using a   load-balancing strategy.
+                  To manage failover in case one or more servers go down.
+                  Key Syntax:
+                 
+                    upstream name {
+                      server address[:port] [parameters] for ex. [weight=3 # Handles 3x traffic]; 
+                      server address[:port] [parameters];
+                      ...
+                      server 192.168.0.101:5000;  # Server 1
+                      server 192.168.0.102:5000;  # Server 2
+                      ...
+                  }
+
+        parameters : 
+            1. weight:
+                Adjusts the proportion of traffic sent to a server.
+                Default is 1.
+            
+            2. max_fails:
+                Specifies how many times a server is allowed to fail before being considered unavailable.
+                Example:
+                server 192.168.0.101:5000 max_fails=3;
+
+            3. fail_timeout:
+                Time during which max_fails failures must occur for the server to be marked as unavailable.
+                Example:
+                server 192.168.0.101:5000 fail_timeout=10s;
+
+            4. backup:
+                Marks the server as a backup, used only if all other servers fail.
+                Example:
+                server 192.168.0.103:5000 backup;   
+
+    5. http block : The http block is the main configuration context for handling HTTP traffic in NGINX. It defines global settings and behaviors for HTTP requests.
+
+    The upstream block facilitates load balancing or request routing.
+
+
+
 
 
 
