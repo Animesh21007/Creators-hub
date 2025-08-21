@@ -9,14 +9,14 @@ const newRequest = axios.create({
 });
 
 // Fallback url logic
-newRequest.interceptors.response.use(
-	(response) => response,
-	async (error) => {
-		if (error.code === 'ECONNABORTED') {
-			error.config.baseURL = 'http://localhost:5000';
-			return axios.request(error.config);
-		}
-	}
-);
+// newRequest.interceptors.response.use(
+// 	(response) => response,
+// 	async (error) => {
+// 		if (error.code === 'ECONNABORTED') {
+// 			error.config.baseURL = 'http://localhost:5000';
+// 			return axios.request(error.config);
+// 		}
+// 	}
+// );
 
 export default newRequest;

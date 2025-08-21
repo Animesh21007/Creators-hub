@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './Register.scss';
 // import useForm from 'react-hook-form';
 import { useForm } from 'react-hook-form';
-import upload from '../../utils/upload.js';
-import newRequest from '../../utils/api.js';
 import { useNavigate } from 'react-router-dom';
+import { useToast } from '../../context/ToastContext.jsx';
+import newRequest from '../../utils/api.js';
+import upload from '../../utils/upload.js';
 
 const Register = () => {
 	const [isSeller, setIsSeller] = useState(false);
 	const navigate = useNavigate();
+	const { showToast } = useToast();
 	const {
 		register,
 		handleSubmit,
@@ -38,6 +40,7 @@ const Register = () => {
 			navigate('/');
 		} catch (err) {
 			console.log(err, 'There was error while sign up!');
+			showToast('error', err.response.data);
 		}
 	};
 

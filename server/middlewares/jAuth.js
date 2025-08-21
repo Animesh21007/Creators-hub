@@ -7,14 +7,11 @@ export const verifyToken = async (req, res, next) => {
 		if (!token) {
 			next(createError(403, 'You are not logged in!'));
 		}
-
 		jwt.verify(token, process.env.JWT_SECRET, (err, payload) => {
 			if (err) next(createError(403, 'Invalid token!'));
-			// console.log(payload);
 			req.userID = payload.id;
 			req.isSeller = payload.isSeller;
 		});
-		// console.log(req.isSeller);
 		next();
 	} catch (err) {
 		console.log(err);

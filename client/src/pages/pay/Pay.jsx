@@ -34,7 +34,7 @@ const Pay = () => {
 					`/orders/create-payment-intent/${id}`
 				);
 				setClientSecret(res.data.clientSecret);
-				console.log(res.data);
+				// console.log(res.data);
 			} catch (err) {
 				console.log(err);
 			}

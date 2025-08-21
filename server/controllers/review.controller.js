@@ -6,7 +6,6 @@ import Gig from '../models/gig.model.js';
 export const createReview = async (req, res, next) => {
 	if (req.isSeller)
 		return next(createError(403, "As a seller you can't create review!"));
-	console.log(req.isSeller, 'dd', req.userID);
 
 	const newReview = new Review({
 		userId: req.userID,
@@ -19,7 +18,6 @@ export const createReview = async (req, res, next) => {
 			gigId: req.body.gigId,
 			userId: req.userID,
 		});
-		console.log(review);
 		if (review?.length > 0 || review)
 			return next(createError(403, 'You have already given a review!'));
 
@@ -27,8 +25,9 @@ export const createReview = async (req, res, next) => {
 			gigId: req.body.gigId,
 			buyerId: req.userID,
 		});
-		// if (!order)
-		// 	return next(createError(403, "You haven't purchased the gig yet!"));
+
+		if (!order)
+			return next(createError(403, "You haven't purchased this gig yet!"));
 
 		await Gig.findByIdAndUpdate(req.body.gigId, {
 			$inc: { totalStars: req.body.star, starNumber: 1 },

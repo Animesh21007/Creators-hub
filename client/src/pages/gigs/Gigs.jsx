@@ -1,10 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
-import './Gigs.scss';
-import GigCard from '../../components/gigCard/GigCard';
-import { gigs } from './../../data';
 import { useQuery } from '@tanstack/react-query';
-import newRequest from '../../utils/api';
+import { useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import GigCard from '../../components/gigCard/GigCard';
+import newRequest from '../../utils/api';
+import './Gigs.scss';
 
 const Gigs = () => {
 	const [open, setOpen] = useState(false);
@@ -19,8 +18,11 @@ const Gigs = () => {
 		queryKey: ['gigs'],
 		queryFn: async () => {
 			const res = await newRequest.get(
-				`/gigs?${search}&max=${minRef.current?.value}&min=${maxRef.current?.value}&sort=${sort}`
+				`/gigs?${search}&sort=${sort}${
+					minRef.current?.value ? `&min=${minRef.current.value}` : ''
+				}${maxRef.current?.value ? `&max=${maxRef.current.value}` : ''}`
 			);
+
 			// console.log(search);
 			return res.data;
 		},
@@ -44,10 +46,6 @@ const Gigs = () => {
 		maxRef.current.value = null;
 	};
 	console.log(data);
-
-	// useEffect(() => {
-	// 	refetch();
-	// }, [sort]);
 
 	return (
 		<div className="gigs">

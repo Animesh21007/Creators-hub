@@ -60,48 +60,54 @@ const Orders = () => {
 				{isLoading ? (
 					'Loading...'
 				) : (
-					<table>
-						<tr>
-							<td>Image</td>
-							<td>Title</td>
-							<td>Price</td>
-							{/* <td>{curruser?.isSeller ? 'Buyer' : 'Seller'}</td> */}
-							<td>Contact</td>
-						</tr>
-						{data &&
-							(data?.length > 0 ? (
-								data?.map((order) => (
-									<tr key={order._id}>
-										<td>
-											<img
-												className="img"
-												src={
-													order.img ||
-													'https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=1600'
-												}
-												alt=""
-											/>
-										</td>
-										<td>{order?.title}</td>
-										<td>{order?.price}</td>
-										<td>
-											<img
-												className="delete"
-												src="/images/message.png"
-												alt=""
-												onClick={() => handleConvo(order)}
-											/>
-										</td>
+					<>
+						{data && data.length > 0 ? (
+							<table>
+								<thead>
+									<tr>
+										<td>Image</td>
+										<td>Title</td>
+										<td>Price</td>
+										{/* <td>{curruser?.isSeller ? 'Buyer' : 'Seller'}</td> */}
+										<td>Contact</td>
 									</tr>
-								))
-							) : (
-								<h2>No orders yet !</h2>
-							))}
-					</table>
+								</thead>
+								{data?.length > 0 && (
+									<tbody>
+										{data.map((order) => (
+											<tr key={order._id}>
+												<td>
+													<img
+														className="img"
+														src={
+															order.img ||
+															'https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=1600'
+														}
+														alt=""
+													/>
+												</td>
+												<td>{order?.title}</td>
+												<td>{order?.price}</td>
+												<td>
+													<img
+														className="delete"
+														src="/images/message.png"
+														alt=""
+														onClick={() => handleConvo(order)}
+													/>
+												</td>
+											</tr>
+										))}
+									</tbody>
+								)}
+							</table>
+						) : (
+							<h2 className="ordeal">No Orders Yet !</h2>
+						)}
+					</>
 				)}
 			</div>
 		</div>
-		// </div>
 	);
 };
 

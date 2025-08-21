@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useTransition } from 'react';
 import Review from '../../components/review/Review';
 import './Reviews.scss';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import newRequest from './../../utils/api';
+import { useToast } from '../../context/ToastContext';
 
 const Reviews = ({ gigId, star }) => {
 	const queryClient = useQueryClient();
+	const toast = useToast();
 
 	const { isLoading, data, error } = useQuery({
 		queryKey: [`reviews`],
@@ -18,10 +20,22 @@ const Reviews = ({ gigId, star }) => {
 
 	const mutation = useMutation({
 		mutationFn: async (review) => {
-			return newRequest.post('/reviews/create', review);
+			try {
+				const res = await newRequest.post('/reviews/create', review);
+				console.log(res, 'review response');
+				return res;
+			} catch (error) {
+				console.log(error, 'Err in reviews.jsx');
+				throw error;
+			}
 		},
 		onSuccess: () => {
 			queryClient.invalidateQueries('reviews');
+		},
+		onError: (e) => {
+			if (e.response && e.reponse.data) {
+				toast('error', e.reponse.data.message);
+			}
 		},
 	});
 

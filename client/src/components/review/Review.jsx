@@ -1,7 +1,6 @@
-import React from 'react';
-import './Review.scss';
 import { useQuery } from '@tanstack/react-query';
 import newRequest from './../../utils/api';
+import './Review.scss';
 
 const Review = ({ star, review }) => {
 	console.log(review);

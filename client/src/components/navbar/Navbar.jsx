@@ -1,18 +1,23 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import './Navbar.scss';
 import Cookies from 'js-cookie';
+import { useEffect, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import newRequest from './../../utils/api';
+import './Navbar.scss';
 
 const Navbar = () => {
 	const [isActive, setIsActive] = useState(false);
 	const [open, setOpen] = useState(false);
+	const [mobileOpen, setMobileOpen] = useState(false);
 	const { pathname } = useLocation();
 	const navigate = useNavigate();
 
 	const isactive = () => {
 		window.scrollY > 0 ? setIsActive(true) : setIsActive(false);
 		// console.log('hell');
+	};
+	const handleLinkClick = () => {
+		setOpen(false);
+		setMobileOpen(false);
 	};
 
 	useEffect(() => {
@@ -40,29 +45,38 @@ const Navbar = () => {
 		<div className={isActive || pathname !== '/' ? 'navbar active' : 'navbar'}>
 			<div className="container">
 				<div className="logo">
-					<Link to="/" className="link">
+					<Link to="/" className="link" onClick={handleLinkClick}>
 						<span className="text">creators'hub </span>
 						<span>.</span>
 					</Link>
 				</div>
-				<div className="links">
-					<Link to="/" className="link">
+				<div
+					className="hamburger"
+					onClick={() => setMobileOpen((prev) => !prev)}>
+					<div>
+						<span></span>
+						<span></span>
+						<span></span>
+					</div>
+				</div>
+				<div className={`links ${mobileOpen ? 'open' : ''}`}>
+					<Link to="/" className="link" onClick={handleLinkClick}>
 						Home
 					</Link>
-					<Link to="/gigs" className="link">
+					<Link to="/gigs" className="link" onClick={handleLinkClick}>
 						Explore
 					</Link>
 					{/* 
 					<span>English</span> */}
 					{!currentUser && (
-						<Link to="/login" className="link">
+						<Link to="/login" className="link" onClick={handleLinkClick}>
 							Sign In
 						</Link>
 					)}
 					{/* {!currentUser?.isSeller && <Link to='/'>Become a Seller</Link>} */}
 					{!currentUser && (
 						<button>
-							<Link to="/register" className="link">
+							<Link to="/register" className="link" onClick={handleLinkClick}>
 								Sign Up
 							</Link>
 						</button>
@@ -82,18 +96,27 @@ const Navbar = () => {
 									onClick={() => setOpen((prev) => false)}>
 									{currentUser?.isSeller && (
 										<>
-											<Link className="link" to="/mygigs">
+											<Link
+												className="link"
+												onClick={handleLinkClick}
+												to="/mygigs">
 												Gigs
 											</Link>
-											<Link className="link" to="/add">
+											<Link
+												className="link"
+												onClick={handleLinkClick}
+												to="/add">
 												Add a gig
 											</Link>
 										</>
 									)}
-									<Link className="link" to="/orders">
+									<Link className="link" onClick={handleLinkClick} to="/orders">
 										Orders
 									</Link>
-									<Link className="link" to="/messages">
+									<Link
+										className="link"
+										onClick={handleLinkClick}
+										to="/messages">
 										Messages
 									</Link>
 									<button className="link logout" onClick={handleLogout}>
@@ -106,41 +129,6 @@ const Navbar = () => {
 				</div>
 			</div>
 			{isActive || (pathname !== '/' && <hr />)}
-			{/* {(isActive || pathname !== '/') && (
-				<>
-					<hr />
-					<div className="menu">
-						<Link className="link menuLink" to="/">
-							Graphics and Design
-						</Link>
-						<Link className="link" to="/">
-							Video & Automation
-						</Link>
-						<Link className="link" to="/">
-							Writing & Transformation
-						</Link>
-						<Link className="link" to="/">
-							AI Services
-						</Link>
-						<Link className="link" to="/">
-							Digital Marketing
-						</Link>
-						<Link className="link" to="/">
-							Music & Audio
-						</Link>
-						<Link className="link" to="/">
-							Programming & Tech
-						</Link>
-						<Link className="link" to="/">
-							Business
-						</Link>
-						<Link className="link" to="/">
-							Lifestyle
-						</Link>
-					</div>
-					<hr />
-				</>
-			)} */}
 		</div>
 	);
 };

@@ -1,25 +1,22 @@
-import React, { useState } from 'react';
-import './App.scss';
-import Navbar from './components/navbar/Navbar';
-import Footer from './components/footer/Footer';
-import Home from './pages/home/Home';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Toaster } from 'react-hot-toast';
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
-import Gigs from './pages/gigs/Gigs';
-import Messages from './pages/messages/Messages';
-import Message from './pages/message/Message';
-import Orders from './pages/orders/Orders';
-import Gig from './pages/gig/Gig';
-import MyGigs from './pages/myGigs/MyGigs';
+import './App.scss';
+import Footer from './components/footer/Footer';
+import Navbar from './components/navbar/Navbar';
+import ProtectedRoute from './components/protectedroute/ProtectedRoute';
 import Add from './pages/add/Add';
+import Gig from './pages/gig/Gig';
+import Gigs from './pages/gigs/Gigs';
+import Home from './pages/home/Home';
 import Login from './pages/login/Login';
-import Register from './pages/register/Register';
-import {
-	QueryClient,
-	QueryClientProvider,
-	useQuery,
-} from '@tanstack/react-query';
+import Message from './pages/message/Message';
+import Messages from './pages/messages/Messages';
+import MyGigs from './pages/myGigs/MyGigs';
+import Orders from './pages/orders/Orders';
 import Pay from './pages/pay/Pay';
-import Sucess from './pages/sucess/Sucess';
+import Register from './pages/register/Register';
+import Success from './pages/success/Success';
 
 const Layout = () => {
 	const queryClient = new QueryClient();
@@ -28,6 +25,7 @@ const Layout = () => {
 		<div className="app">
 			<QueryClientProvider client={queryClient}>
 				<div className="main">
+					<Toaster />
 					<span>
 						<Navbar />
 					</span>
@@ -70,31 +68,59 @@ const router = createBrowserRouter([
 			},
 			{
 				path: '/orders',
-				element: <Orders />,
+				element: (
+					<ProtectedRoute>
+						<Orders />,
+					</ProtectedRoute>
+				),
 			},
 			{
 				path: '/mygigs',
-				element: <MyGigs />,
+				element: (
+					<ProtectedRoute>
+						<MyGigs />
+					</ProtectedRoute>
+				),
 			},
 			{
 				path: '/add',
-				element: <Add />,
+				element: (
+					<ProtectedRoute>
+						<Add />
+					</ProtectedRoute>
+				),
 			},
 			{
 				path: '/message/:id',
-				element: <Message />,
+				element: (
+					<ProtectedRoute>
+						<Message />
+					</ProtectedRoute>
+				),
 			},
 			{
 				path: '/messages',
-				element: <Messages />,
+				element: (
+					<ProtectedRoute>
+						<Messages />
+					</ProtectedRoute>
+				),
 			},
 			{
 				path: '/pay/:id',
-				element: <Pay />,
+				element: (
+					<ProtectedRoute>
+						<Pay />
+					</ProtectedRoute>
+				),
 			},
 			{
 				path: '/success',
-				element: <Sucess />,
+				element: (
+					<ProtectedRoute>
+						<Success />
+					</ProtectedRoute>
+				),
 			},
 		],
 	},

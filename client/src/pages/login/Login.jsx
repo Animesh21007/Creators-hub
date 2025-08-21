@@ -1,8 +1,8 @@
-import React from 'react';
-import './Login.scss';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { useToast } from '../../context/ToastContext';
 import newRequest from '../../utils/api';
+import './Login.scss';
 
 const Login = () => {
 	const {
@@ -13,6 +13,7 @@ const Login = () => {
 	} = useForm();
 
 	const navigate = useNavigate();
+	const { showToast } = useToast();
 
 	const onSubmit = async (data) => {
 		console.log('Submit', data);
@@ -22,10 +23,12 @@ const Login = () => {
 			console.log(res);
 			if (res) {
 				localStorage.setItem('userInfo', JSON.stringify(res.data));
+				showToast('success', 'Login successful! Redirecting...');
 				navigate('/');
 			}
 		} catch (err) {
 			console.log(err);
+			showToast('error', 'Login failed. Please check your credentials!');
 		}
 	};
 	return (

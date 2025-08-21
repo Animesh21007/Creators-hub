@@ -1,14 +1,11 @@
-import React from 'react';
-import './Gig.scss';
-import Slide from '../../components/slides/Slides.jsx';
+import { useQuery } from '@tanstack/react-query';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import star from '/images/star.png';
-import { useQuery } from '@tanstack/react-query';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import newRequest from '../../utils/api';
 import Reviews from '../reviews/Reviews';
-import { Link } from 'react-router-dom';
+import './Gig.scss';
+import star from '/images/star.png';
 
 const Gig = () => {
 	const { id } = useParams();
@@ -40,7 +37,7 @@ const Gig = () => {
 	const responsive = {
 		desktop: {
 			breakpoint: { max: 3000, min: 1024 },
-			items: 1, // Adjust this based on how many slides you want to show on desktop
+			items: 1,
 		},
 		tablet: {
 			breakpoint: { max: 1024, min: 464 },
@@ -90,7 +87,7 @@ const Gig = () => {
 										<img key={idx} src={img} alt="" />
 									))
 								) : (
-									<p>No images available</p> // Optional fallback if images array is empty or undefined
+									<p>No images available</p>
 								)}
 							</Carousel>
 						</div>

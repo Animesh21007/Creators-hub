@@ -2,7 +2,6 @@ import Gig from '../models/gig.model.js';
 import createError from '../utils/errorHandle.js';
 
 export const createGig = async (req, res, next) => {
-	console.log(req);
 	if (!req.isSeller)
 		return next(createError(403, 'Only seller can create Gigs!'));
 	try {
@@ -43,7 +42,7 @@ export const getGig = async (req, res, next) => {
 };
 export const getGigs = async (req, res, next) => {
 	const qur = req.query;
-	console.log(qur);
+	// console.log(qur);
 	const filter = {
 		...(qur.userId && { userId: qur.userId }),
 		...(qur.cat && { cat: qur.cat }),

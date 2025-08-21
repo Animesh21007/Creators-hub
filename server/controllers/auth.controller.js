@@ -66,6 +66,8 @@ export const logout = async (req, res) => {
 				secure: true,
 				httpOnly: true,
 				sameSite: 'none', // As client and server are on different ports
+				// If the protocol is not https i.e not secure then we use
+				// sameSite: 'lax' and we don't need to use secure : true
 			})
 			.status(200)
 			.send('User logged out successfully!');
