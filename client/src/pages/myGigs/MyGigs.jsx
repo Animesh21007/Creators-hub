@@ -1,9 +1,8 @@
-import React from 'react';
-import './MyGigs.scss';
-import { Link } from 'react-router-dom';
-import getCurrentUser from '../../utils/getCurrentUser';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { Link } from 'react-router-dom';
 import newRequest from '../../utils/api';
+import getCurrentUser from '../../utils/getCurrentUser';
+import './MyGigs.scss';
 
 const MyGigs = () => {
 	const curruser = getCurrentUser();
@@ -55,7 +54,7 @@ const MyGigs = () => {
 						</tr>
 						{data?.map((gig) => (
 							<tr>
-								<td key={gig._id}>
+								<td key={gig._id + Math.random()}>
 									<img
 										className="img"
 										src={

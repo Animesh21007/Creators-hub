@@ -13,7 +13,6 @@ const Footer = () => {
 
 					<div className="right">
 						<div className="social">
-							<img src="/images/twitter.png" alt="Twitter" />
 							<img src="/images/facebook.png" alt="Facebook" />
 							<img src="/images/linkedin.png" alt="LinkedIn" />
 							<img src="/images/instagram.png" alt="Instagram" />

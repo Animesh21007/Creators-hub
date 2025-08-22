@@ -1,9 +1,8 @@
-import React from 'react';
-import './Messages.scss';
-import { Link } from 'react-router-dom';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import newRequest from '../../utils/api';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
+import newRequest from '../../utils/api';
+import './Messages.scss';
 
 const Messages = () => {
 	const curruser = JSON.parse(localStorage.getItem('userInfo')) || {
@@ -58,24 +57,27 @@ const Messages = () => {
 							</tr>
 						</thead>
 						<tbody>
-							{data?.map((convo) => (
-								<tr
-									key={Math.random().toString(36)}
-									className={
-										(curruser.isSeller && !convo.readBySeller) ||
-										(!curruser.isSeller && !convo.readBySeller ? 'active' : '')
-									}>
-									<td>
-										{curruser.isSeller ? convo?.buyerId : convo?.sellerId}
-									</td>
-									<td>
-										<Link to={`/message/${convo.id}`} className="link">
-											{convo?.lastMsg?.substring(0, 100)}...
-										</Link>
-									</td>
-									<td>{moment(convo.updatedAt).fromNow()}</td>
-									<td>
-										{/* {(curruser.isSeller && !convo.readBySeller) ||
+							{data && data.length > 0 ? (
+								data?.map((convo) => (
+									<tr
+										key={Math.random().toString(36)}
+										className={
+											(curruser.isSeller && !convo.readBySeller) ||
+											(!curruser.isSeller && !convo.readBySeller
+												? 'active'
+												: '')
+										}>
+										<td>
+											{curruser.isSeller ? convo?.buyerId : convo?.sellerId}
+										</td>
+										<td>
+											<Link to={`/message/${convo.id}`} className="link">
+												{convo?.lastMsg?.substring(0, 100)}...
+											</Link>
+										</td>
+										<td>{moment(convo.updatedAt).fromNow()}</td>
+										<td>
+											{/* {(curruser.isSeller && !convo.readBySeller) ||
 											(!curruser.isSeller && !convo.readBySeller ? (
 												<button id="bt" onClick={() => handleRead(convo.id)}>
 													Mark as Read
@@ -83,17 +85,20 @@ const Messages = () => {
 											) : (
 												<button id="bt">Seen</button>
 											))} */}
-										{(curruser.isSeller && !convo.readBySeller) ||
-										(!curruser.isSeller && !convo.readByBuyer) ? (
-											<button id="bt" onClick={() => handleRead(convo.id)}>
-												Mark as Read
-											</button>
-										) : (
-											<button id="bt">Seen</button>
-										)}
-									</td>
-								</tr>
-							))}
+											{(curruser.isSeller && !convo.readBySeller) ||
+											(!curruser.isSeller && !convo.readByBuyer) ? (
+												<button id="bt" onClick={() => handleRead(convo.id)}>
+													Mark as Read
+												</button>
+											) : (
+												<button id="bt">Seen</button>
+											)}
+										</td>
+									</tr>
+								))
+							) : (
+								<h2>No messages to display</h2>
+							)}
 						</tbody>
 					</table>
 				</div>

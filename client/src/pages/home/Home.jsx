@@ -1,11 +1,10 @@
-import React from 'react';
-import './Home.scss';
 import Featured from '../../components/featured/Featured';
+import './Home.scss';
 // import TrustedBy from '../../components/trustedby/TrustedBy';
-import { cards, projects } from '../../data';
 import CategoryCard from '../../components/categoryCards/CategoryCard';
-import Slides from './../../components/slides/Slides';
+import { cards, projects } from '../../data';
 import ProjectCard from './../../components/projects/ProjectCard';
+import Slides from './../../components/slides/Slides';
 
 const Home = () => {
 	return (
@@ -67,8 +66,8 @@ const Home = () => {
 				</div>
 			</div>
 
-			<div className="features dark">
-				<div className="container">
+			<div className="features dark text-dark crimson">
+				<div className="container" style={{ width: '50%' }}>
 					<div className="item" id="item2">
 						<h1>
 							<i>business</i>
@@ -95,10 +94,6 @@ const Home = () => {
 							Manage teamwork and boost productivity with one powerful workspace
 						</div>
 						<button>Explore Creators'hub Businesses</button>
-					</div>
-
-					<div className="item">
-						<img src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_870,dpr_2.0/v1/attachments/generic_asset/asset/d9c17ceebda44764b591a8074a898e63-1599597624768/business-desktop-870-x2.png" />
 					</div>
 				</div>
 			</div>

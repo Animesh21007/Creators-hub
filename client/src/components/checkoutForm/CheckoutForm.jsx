@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
 import {
-	PaymentElement,
 	LinkAuthenticationElement,
-	useStripe,
+	PaymentElement,
 	useElements,
+	useStripe,
 } from '@stripe/react-stripe-js';
+import { useEffect, useState } from 'react';
 import './CheckoutForm.scss';
 
 const CheckoutForm = ({ dpmCheckerLink }) => {
@@ -48,7 +48,7 @@ const CheckoutForm = ({ dpmCheckerLink }) => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-
+		console.log('hello');
 		if (!stripe || !elements) {
 			return;
 		}
@@ -84,12 +84,15 @@ const CheckoutForm = ({ dpmCheckerLink }) => {
 					onChange={(e) => setEmail(e.target?.value)}
 				/>
 				<PaymentElement id="payment-element" options={paymentElementOptions} />
-				<button disabled={isLoading || !stripe || !elements} id="submit">
+				<button
+					disabled={isLoading || !stripe || !elements}
+					id="submit"
+					style={{ cursor: 'pointer' }}>
 					<span id="button-text">
 						{isLoading ? (
 							<div className="spinner " id="spinner"></div>
 						) : (
-							'Pay Now'
+							<p style={{ cursor: 'pointer' }}>Pay Now</p>
 						)}
 					</span>
 				</button>

@@ -19,7 +19,7 @@ const Review = ({ star, review }) => {
 	return (
 		<div className="review">
 			{isLoading ? (
-				'Loading...'
+				<p>Loading...</p>
 			) : error ? (
 				'There was an error'
 			) : (

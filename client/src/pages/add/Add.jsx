@@ -1,10 +1,11 @@
-import React, { useReducer, useState } from 'react';
-import './Add.scss';
-import upload from './../../utils/upload.js';
-import { gigReducer, INITIAL_STATE } from '../../reducers/gigReducer';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import newRequest from './../../utils/api.js';
+import { useReducer, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useToast } from '../../context/ToastContext.jsx';
+import { gigReducer, INITIAL_STATE } from '../../reducers/gigReducer';
+import newRequest from './../../utils/api.js';
+import upload from './../../utils/upload.js';
+import './Add.scss';
 
 const Add = () => {
 	const navigate = useNavigate();
